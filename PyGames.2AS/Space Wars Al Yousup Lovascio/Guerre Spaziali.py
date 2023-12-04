@@ -149,7 +149,7 @@ while menu:
                                 posy = random.randint(-200, -enemy_height)
                                 enemies.append(pygame.Rect(posx, posy, enemy_width, enemy_height))                        
                     # Se viene premuto il tasto SPAZIO e il gioco non è terminato, aggiungiamo un colpo alla lista degli oggetti sparati
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE and not game_over:
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN and not game_over:
                         shots.append(pygame.Rect(x + w // 2 - 2, y, 7, 14))
                         # Aggiungiamo la musica per i colpi sparati
                         pygame.mixer.init()

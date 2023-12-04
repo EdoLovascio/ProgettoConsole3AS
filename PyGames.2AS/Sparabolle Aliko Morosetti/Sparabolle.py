@@ -31,6 +31,7 @@ shoot_radius = 20 #raggio della bolla sparata
 shoot_speed = 5 #velocità proiettile
 player_bubble_x = 0 #coordinate iniziali
 player_bubble_y = 0 #coordinate iniziali
+a = 400
 
 occupied_positions = set() #lista per tenere elencati gli spazi occupati
 
@@ -119,6 +120,7 @@ def game():
             bubbles.append(bubble)
         spostamento += 1
 
+
     # Ciclo di gioco
     running = True
     while running:
@@ -126,11 +128,18 @@ def game():
             if event.type == pygame.QUIT:
                 running = False
 
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                if not player_bubble:
-                    player_bubble_x, player_bubble_y = pygame.mouse.get_pos()
-                    player_bubble = create_bubble(player_bubble_x, player_bubble_y, actual_color['color'])
-                    actual_color = NewColor()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    
+                    if not player_bubble:
+                        player_bubble_x, player_bubble_y = a, 500
+                        player_bubble = create_bubble(player_bubble_x, player_bubble_y, actual_color['color'])
+                        actual_color = NewColor()
+                
+                elif event.key == pygame.K_RIGHT:
+                    a += 1
+                elif event.key == pygame.K_LEFT:
+                    a -= 1
 
         # Aggiorna il movimento del proiettile e controlla le collisioni
         if player_bubble:
