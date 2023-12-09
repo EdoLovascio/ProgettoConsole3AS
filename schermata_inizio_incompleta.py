@@ -48,7 +48,7 @@ while running:
     for buttonRect in buttonRects:
         buttonColor = "red"
         if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
-            buttonColor = "green"
+            buttonColor = "purple"
         pygame.draw.rect(screen, buttonColor, buttonRect)
 
     for x, buttonRect in enumerate(buttonRects):
