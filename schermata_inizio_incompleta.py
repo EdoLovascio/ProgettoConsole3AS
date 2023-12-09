@@ -43,7 +43,7 @@ while running:
                 if buttonRect.collidepoint(mPos):
                     running = False
 
-    screen.fill("white")
+    screen.fill("black")
 
     for buttonRect in buttonRects:
         buttonColor = "red"
