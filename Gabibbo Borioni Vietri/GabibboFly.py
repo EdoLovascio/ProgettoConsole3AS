@@ -6,8 +6,8 @@ import random
 pygame.init()
 
 #dimensioni dello schermo
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 900
+SCREEN_HEIGHT = 700
 
 #impostazione del display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
