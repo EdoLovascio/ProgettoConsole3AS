@@ -27,8 +27,8 @@ x = 300
 y = SCREEN_HEIGHT // 2
 
 #dimensioni del gabibbo 
-w = 60
-h = 45
+w = 55
+h = 40
 
 #funzioni per musica
 pygame.mixer.init()
