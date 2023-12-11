@@ -29,9 +29,8 @@ bubble_colors = ["red", "green", "blue", "yellow", "magenta", "cyan"] #colori
 bubble_speed = 1 #velocità della bolla
 shoot_radius = 20 #raggio della bolla sparata
 shoot_speed = 5 #velocità proiettile
-player_bubble_x = 0 #coordinate iniziali
-player_bubble_y = 0 #coordinate iniziali
-a = 400
+
+
 
 occupied_positions = set() #lista per tenere elencati gli spazi occupati
 
@@ -107,6 +106,9 @@ def game():
     punteggio=0
     spostamento=0
 
+    player_bubble_x = 50 #coordinate iniziali
+    player_bubble_y = 0 #coordinate iniziali
+    
     # Creazione delle righe iniziali di bolle
     for i in range(4):
         for j in range(WIDTH // (bubble_radius * 2)-4):
@@ -127,19 +129,22 @@ def game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+                
+               
                     
+                if event.key == pygame.K_RETURN:
                     if not player_bubble:
-                        player_bubble_x, player_bubble_y = a, 500
+                        player_bubble_y = 500
                         player_bubble = create_bubble(player_bubble_x, player_bubble_y, actual_color['color'])
                         actual_color = NewColor()
+                        
+                if event.key == pygame.K_RIGHT:
+                    player_bubble_x += 20
                 
-                elif event.key == pygame.K_RIGHT:
-                    a += 1
-                elif event.key == pygame.K_LEFT:
-                    a -= 1
+                if event.key == pygame.K_LEFT:
+                    player_bubble_x -= 20
+                
 
         # Aggiorna il movimento del proiettile e controlla le collisioni
         if player_bubble:
@@ -173,10 +178,13 @@ def game():
         for bubble in bubbles:
             if not bubble['popped']: # se non è scoppiata si attacca
                 draw_bubble(bubble['x'], bubble['y'], bubble['color'])
-
+        
         # Disegna la bolla del giocatore
         if player_bubble:
             draw_bubble(player_bubble['x'], player_bubble['y'], player_bubble['color'])
+            
+        #disegna puntatore
+        player = pygame.draw.circle(screen, actual_color['color'], (player_bubble_x, 500), bubble_radius)  
 
         # Aggiorna la schermata
         pygame.display.flip()
