@@ -142,10 +142,10 @@ while running:
         
         keys = pygame.key.get_pressed() 
         if keys[pygame.K_LEFT] and x > 40: 
-            x -= speed * 10
+            x -= speed * 6
             Hermano = HermanoS
         if keys[pygame.K_RIGHT] and x < screen_x - width // 2:
-            x += speed * 10
+            x += speed * 6
             Hermano = HermanoD
 
         if keys[pygame.K_UP] and y - 95 > 0:
@@ -156,15 +156,15 @@ while running:
         
         if jump:
             if salto >= 0:
-                y -= (salto * abs(salto)) * 0.8
-                salto -= 1
+                y -= (salto * abs(salto)) * 0.5
+                salto -= 0.5
             else:
                 jump = False
         
         # Gravità
         
         if y < 750:
-            y += 15
+            y += 10
         
         # Condizione per salire di livello
         
@@ -188,10 +188,10 @@ while running:
         screen.blit(prato,(0,500))
         screen.blit(prato,(500,500))
         
-        nuvola1 = pygame.draw.rect(screen, "light blue", (150, 535, 85, 30))
-        nuvola2 = pygame.draw.rect(screen, "light blue", (500, 435, 85, 30))
-        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 335, 85, 30))
-        nuvola4 = pygame.draw.rect(screen, "light blue", (400, 215, 85, 30))
+        nuvola1 = pygame.draw.rect(screen, "light blue", (150, 535, 85, 1))
+        nuvola2 = pygame.draw.rect(screen, "light blue", (500, 435, 85, 1))
+        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 335, 85, 1))
+        nuvola4 = pygame.draw.rect(screen, "light blue", (400, 215, 85, 1))
         
         drago = pygame.draw.rect(screen, "light blue", (xD + 15, screen_y // 2 + 82, 120, 36))
         
@@ -251,10 +251,10 @@ while running:
         
         keys = pygame.key.get_pressed() 
         if keys[pygame.K_LEFT] and x2 > 40: 
-            x2 -= speed * 10
+            x2 -= speed * 6
             Hermano = HermanoS
         if keys[pygame.K_RIGHT] and x2 < screen_x - width // 2:
-            x2 += speed * 10
+            x2 += speed * 6
             Hermano = HermanoD
 
         if keys[pygame.K_UP] and y2 - 95 > 0:
@@ -265,15 +265,15 @@ while running:
         
         if jump:
             if salto >= 0:
-                y2 -= (salto * abs(salto)) * 0.8
-                salto -= 1
+                y2 -= (salto * abs(salto)) * 0.5
+                salto -= 0.5
             else:
                 jump = False
         
         # Gravità
         
         if y2 < 750:
-            y2 += 15
+            y2 += 10
         
         # Condizione per salire di livello
         
@@ -299,10 +299,10 @@ while running:
         prato_rect = pygame.draw.rect(screen, "light blue", (0, screen_y - 36, 1000, 100))
         
         
-        nuvola1 = pygame.draw.rect(screen, "light blue", (800, 520, 85, 30))
-        nuvola2 = pygame.draw.rect(screen, "light blue", (270, 370, 85, 30))
-        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 30))
-        nuvola4 = pygame.draw.rect(screen, "light blue", (180, 220, 85, 30))
+        nuvola1 = pygame.draw.rect(screen, "light blue", (800, 520, 85, 1))
+        nuvola2 = pygame.draw.rect(screen, "light blue", (270, 370, 85, 1))
+        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 1))
+        nuvola4 = pygame.draw.rect(screen, "light blue", (180, 220, 85, 1))
         
         
         drago1 = pygame.draw.rect(screen, "light blue", (xD2 - 35, yD + 12, 120, 36))
@@ -324,8 +324,8 @@ while running:
         screen.blit(Drago,(xDD2 - 50, yDD))
         
         # Movimento del drago
-        xD2 -= speed * 8
-        xDD2 -= speed * 6
+        xD2 -= speed * 6
+        xDD2 -= speed * 4
         
         screen.blit(nuvolaScura, (790, 500))
         screen.blit(nuvolaScura, (260, 350))
@@ -374,10 +374,10 @@ while running:
         
         keys = pygame.key.get_pressed() 
         if keys[pygame.K_LEFT] and x3 > 40: 
-            x3 -= speed * 10
+            x3 -= speed * 6
             Hermano = HermanoS
         if keys[pygame.K_RIGHT] and x3 < screen_x - width // 2:
-            x3 += speed * 10
+            x3 += speed * 6
             Hermano = HermanoD
 
         if keys[pygame.K_UP] and y3 - 95 > 0:
@@ -388,15 +388,15 @@ while running:
         
         if jump:
             if salto >= 0:
-                y3 -= (salto * abs(salto)) * 0.8
-                salto -= 1
+                y3 -= (salto * abs(salto)) * 0.5
+                salto -= 0.5
             else:
                 jump = False
         
         # Gravità
         
         if y3 < 750:
-            y3 += 15
+            y3 += 10
         
         # Condizione per salire di livello
         
@@ -431,10 +431,10 @@ while running:
         drago2 = pygame.draw.rect(screen, "light blue", (xDD3 - 95, yDD2 + 12, 180, 56))
         
         
-        nuvola1 = pygame.draw.rect(screen, "light blue", (screen_x // 2, 520, 85, 30))
-        nuvola2 = pygame.draw.rect(screen, "light blue", (180, 370, 85, 30))
-        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 30))
-        nuvola4 = pygame.draw.rect(screen, "light blue", (380, 220, 85, 30))
+        nuvola1 = pygame.draw.rect(screen, "light blue", (screen_x // 2, 520, 85, 1))
+        nuvola2 = pygame.draw.rect(screen, "light blue", (180, 370, 85, 1))
+        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 1))
+        nuvola4 = pygame.draw.rect(screen, "light blue", (380, 220, 85, 1))
         
         
         screen.blit(nuvolaGrande,(-50, 280))
@@ -453,8 +453,8 @@ while running:
         screen.blit(Drago,(xDD3 - 110, yDD2))
         
         # Velocità del drago
-        xD3 -= speed * 10
-        xDD3 -= speed * 6
+        xD3 -= speed * 6
+        xDD3 -= speed * 4
         
         screen.blit(nuvolaScura, (screen_x // 2 - 10, 500))
         screen.blit(nuvolaScura, (170, 350))
@@ -503,10 +503,10 @@ while running:
         
         keys = pygame.key.get_pressed() 
         if keys[pygame.K_LEFT] and x4 > 40: 
-            x4 -= speed * 10
+            x4 -= speed * 6
             Hermano = HermanoS
         if keys[pygame.K_RIGHT] and x4 < screen_x - width // 2:
-            x4 += speed * 10
+            x4 += speed * 6
             Hermano = HermanoD
 
         if keys[pygame.K_UP] and y4 - 95 > 0:
@@ -517,15 +517,15 @@ while running:
         
         if jump:
             if salto >= 0:
-                y4 -= (salto * abs(salto)) * 0.8
-                salto -= 1
+                y4 -= (salto * abs(salto)) * 0.5
+                salto -= 0.5
             else:
                 jump = False
         
         # Gravità
         
         if y4 < 750:
-            y4 += 15
+            y4 += 10
         
         # Condizione per salire di livello
         
@@ -555,10 +555,10 @@ while running:
         drago = pygame.draw.rect(screen, "light blue", (xD4 + 35, yD3 + 20, 410, 120))
         
         
-        nuvola1 = pygame.draw.rect(screen, "light blue", (150, 520, 85, 30))
-        nuvola2 = pygame.draw.rect(screen, "light blue", (500, 370, 85, 30))
-        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 30))
-        nuvola4 = pygame.draw.rect(screen, "light blue", (330, 200, 85, 30))
+        nuvola1 = pygame.draw.rect(screen, "light blue", (150, 520, 85, 1))
+        nuvola2 = pygame.draw.rect(screen, "light blue", (500, 370, 85, 1))
+        nuvola3 = pygame.draw.rect(screen, "light blue", (710, 320, 85, 1))
+        nuvola4 = pygame.draw.rect(screen, "light blue", (330, 200, 85, 1))
         
         screen.blit(nuvolaGrande,(-50, 280))
         screen.blit(nuvolaGrande,(350, 280))
@@ -575,7 +575,7 @@ while running:
         screen.blit(Drago,(xD4, yD3))
         
         # Velocità del drago
-        xD4 -= speed * 10
+        xD4 -= speed * 5
         
         screen.blit(nuvolaScurissima, (140, 500))
         screen.blit(nuvolaScurissima, (490, 350))
@@ -652,7 +652,8 @@ while running:
 # ------------------------------------------------------------
 
     pygame.display.flip()
-    clock.tick(35)
+    clock.tick(60)
     
 pygame.quit()
+
 
