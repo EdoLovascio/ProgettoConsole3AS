@@ -6,15 +6,15 @@ CurentPath = Path.cwd()
 CG = CurentPath / "games" # CG sta per cartella giochi
 
 # dichiaro tutte le cartelle dei giochi (il loro path per aprirle una volta l'utente ci vorrà giocare)
-Reaper = CG / "Escape The Reaper Marcu Piervittori"
-Gabibbo = CG / "Gabibbo Borioni Vietri"
-Fico = CG / "Gioco Pandolfi Ludovico"
-Jumper = CG / "Jumper Domestico Ricci"
-PacMan = CG / "Pac-Man Bordoni Meco"
-Snake = CG / "Snake Ficosecco Marrone Maltempi"
-SpaceSomething = CG / "Space Something Mazzarini Wang"
-SpaceWars = CG / "Space Wars Al Yousup Lovascio"
-Sparabolle = CG / "Sparabolle Aliko Morosetti"
+Reaper = CG / "Escape_The_Reaper"
+Gabibbo = CG / "Gabibbo"
+Ficosecco = CG / "Ficosecco"
+Jumper = CG / "Jumper"
+PacMan = CG / "Pac-Man"
+Snake = CG / "Snake"
+SpaceSomething = CG / "Space_Something"
+SpaceWars = CG / "Space_Wars"
+Sparabolle = CG / "Sparabolle"
 
 #-------------------------------------#
 # variabili
@@ -81,47 +81,47 @@ while running:
             if buttonRect.collidepoint(mPos):
                 # per ogni pulsante che clicco mi apre un gioco diverso
                 if ListaButton.index(buttonRect) == NameButton[0]:
-                   filePath = CG / "escapethereaperv2.py"
+                   filePath = Reaper / "escapethereaperv2.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[1]:
-                   filePath = CG / "GabibboFly.py"
+                   filePath = Gabibbo / "GabibboFly.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[2]:
-                   filePath = CG / "Gioco.py"
+                   filePath = Ficosecco / "Gioco.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[3]:
-                   filePath = CG / "JUMPER.py"
+                   filePath = Jumper / "JUMPER.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[4]:
-                   filePath = CG / "Pac-Man.py"
+                   filePath = PacMan / "Pac-Man.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[5]:
-                   filePath = CG / "Snake.py"
+                   filePath = Snake / "Snake.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[6]:
-                   filePath = CG / "SPACE_SOMETHING.py"
+                   filePath = SpaceSomething / "SPACE_SOMETHING.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[7]:
-                   filePath = CG / "GuerreSpaziali.py"
+                   filePath = SpaceWars / "GuerreSpaziali.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
                 if ListaButton.index(buttonRect) == NameButton[8]:
-                   filePath = CG / "Sparabolle.py"
+                   filePath = Sparabolle / "Sparabolle.py"
                    file = filePath.open()
                    comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                    subprocess.run(comando)
