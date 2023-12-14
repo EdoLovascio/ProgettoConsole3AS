@@ -162,6 +162,8 @@ BOTTONE_PAUSA = pygame.Rect(SCREEN_WIDTH // 2 -100, SCREEN_HEIGHT //2 + 50, 200,
 BOTTONE_QUIT_P = pygame.Rect( SCREEN_WIDTH // 2 - 75  , SCREEN_HEIGHT //2 + 150 , 150, 50)
 BOTTONE_RESTART_P = pygame.Rect(SCREEN_WIDTH // 2 -115 , SCREEN_HEIGHT //2 - 50 ,  230, 50)
 
+bottone_pausa_selezionato = 1
+
 #-------------------------------------------------
 #MENU STARTING
 
@@ -191,6 +193,8 @@ img_navicella4 = pygame.image.load("Navicella2.png")
 img_navicella4 = pygame.transform.scale(img_navicella4, (120, 113 ) )
 img_navicella4 = pygame.transform.rotate(img_navicella4, 270 )
 
+bottone_menu_selezionato = 1
+
 # -----------------------------------------------------------------------
 #MORTE
 BOTTONE_QUIT_M = pygame.Rect((SCREEN_WIDTH // 4)*2.5, SCREEN_HEIGHT //2 , 150, 50)
@@ -198,6 +202,8 @@ BOTTONE_RESTART = pygame.Rect(SCREEN_WIDTH // 4, SCREEN_HEIGHT //2 ,  230, 50)
 
 img_coppa = pygame.image.load("COPPA.png")
 img_coppa = pygame.transform.scale(img_coppa, (200, 200 ) )
+
+bottone_morte_selezionato = 1
 
 #---------------------------------
 # SCHERMO
@@ -265,60 +271,79 @@ while running:
                 pygame.mixer.music.pause()
                 
                 while paused == True :
-                    mPos = pygame.mouse.get_pos()
-                    
-                    for event in pygame.event.get():
-                        if event.type == pygame.KEYDOWN and event.key == pygame.K_p:
-                            paused = False
-                            stato = "GAMING"
-                            pygame.mixer.music.play()
-                            break
-                        
-                        if event.type == pygame.MOUSEBUTTONDOWN: 
-                            if BOTTONE_PAUSA.collidepoint(mPos):
-                                paused = False
-                                stato = "GAMING"
-                                pygame.mixer.music.play()
-                                break
-                            
-                            if BOTTONE_RESTART_P.collidepoint(mPos):
-                                x1 = SCREEN_WIDTH // 4
-                                y1 = SCREEN_HEIGHT // 2
-                                x2 = SCREEN_WIDTH // 4 * 3
-                                y2 = SCREEN_HEIGHT // 2
-                                
-                                w1 = 60
-                                h1 = 30
-                                w2 = 60
-                                h2 = 30
-                                
-                                bullets1 = []
-                                bullets2 = []
-                                vita1 = 10
-                                vita2 = 10
-                                ricariche1 = []
-                                ricariche2 = []
-                                
-                                paused = False
-                                stato = "GAMING"
-                                pygame.mixer.music.play()
-                                break
-                            
-                            if BOTTONE_QUIT_P.collidepoint(mPos):
-                                running = False
-                                paused = False
-                                stato = "GAMING"
-                                break
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT: 
+                        running = False
+                        stato = "GAMING"
+                        paused = False
+                        break
                     
                     bottone_restart_color = "red"
+                    bottone_quit_color = "red"
+                    buttonColor = "red"
                     
-                    if BOTTONE_RESTART_P.collidepoint(mPos):
+                    if bottone_pausa_selezionato == 1 :
+                        buttonColor = "blue"
+                        
+                    if bottone_pausa_selezionato == 2:
+                        bottone_quit_color = "blue"
+                        
+                    if bottone_pausa_selezionato == 3 :
                         bottone_restart_color = "blue"
                     
-                    bottone_quit_color = "red"
-                    
-                    if BOTTONE_QUIT_P.collidepoint(mPos):
-                        bottone_quit_color = "blue"
+                    for event in pygame.event.get():
+                        if event.type == pygame.KEYDOWN :
+                            if event.key == pygame.K_p:
+                                paused = False
+                                stato = "GAMING"
+                                pygame.mixer.music.play()
+                                break
+                                
+                            if event.key == pygame.K_DOWN :
+                                if bottone_pausa_selezionato < 3 :
+                                    bottone_pausa_selezionato +=1
+                                else :
+                                    bottone_pausa_selezionato = 1
+                            
+                            if event.key == pygame.K_UP: 
+                                if bottone_pausa_selezionato > 1 :
+                                    bottone_pausa_selezionato -=1
+                                else :
+                                    bottone_pausa_selezionato = 3
+                            
+                            if event.key == pygame.K_RETURN :
+                                if bottone_pausa_selezionato == 1 :
+                                    paused = False
+                                    stato = "GAMING"
+                                    pygame.mixer.music.play()
+                                    break
+                                if bottone_pausa_selezionato == 2:
+                                    running = False
+                                    paused = False
+                                    stato = "GAMING"
+                                    break
+                                else :
+                                    x1 = SCREEN_WIDTH // 4
+                                    y1 = SCREEN_HEIGHT // 2
+                                    x2 = SCREEN_WIDTH // 4 * 3
+                                    y2 = SCREEN_HEIGHT // 2
+                                
+                                    w1 = 60
+                                    h1 = 30
+                                    w2 = 60
+                                    h2 = 30
+                                    
+                                    bullets1 = []
+                                    bullets2 = []
+                                    vita1 = 10
+                                    vita2 = 10
+                                    ricariche1 = []
+                                    ricariche2 = []
+                                    
+                                    paused = False
+                                    stato = "GAMING"
+                                    pygame.mixer.music.play()
+                                    break
+
                     
                     screen.blit(img_cornice, (SCREEN_WIDTH //6 , 60 ))
                     screen.blit(img_interno, (SCREEN_WIDTH //6 , 60))
@@ -329,13 +354,16 @@ while running:
                     bottone_quit = pygame.draw.rect(screen, bottone_quit_color, BOTTONE_QUIT_P )
                     screen.blit(QUIT, (SCREEN_WIDTH // 2 - 65  , SCREEN_HEIGHT //2 + 150 ))
                     screen.blit(RESTART, (SCREEN_WIDTH // 2 -115 , SCREEN_HEIGHT //2 - 50))
-                    buttonColor = "red"
-                    
-                    if BOTTONE_PAUSA.collidepoint(mPos):
-                        buttonColor = "blue"
                     
                     button = pygame.draw.rect(screen,buttonColor,BOTTONE_PAUSA)
                     screen.blit(RESUME, (SCREEN_WIDTH // 2 -100, SCREEN_HEIGHT //2 + 50))
+                    
+                    bottone_pausa_m_color = "blue"
+                    pausa_b = img_pausa_active
+
+                    bottone_pausa = pygame.draw.rect(screen,bottone_pausa_m_color,bottone_PAUSA )
+                    screen.blit(pausa_b, (SCREEN_WIDTH // 2 -35  , 20) )
+    
                     pygame.display.flip()
 
     if paused:
@@ -344,34 +372,49 @@ while running:
     #MENU INIZIALE 
     if stato == "STARTING" :
         while stato == "STARTING" :
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
+                running = False
+                break
+                    
             screen.blit(img_STARTING ,(0, 0))
-            mPos = pygame.mouse.get_pos()
             
             for event in pygame.event.get():
-                    
                 if event.type == pygame.KEYDOWN:
-                   if event.key == pygame.K_RETURN:
+                    if event.key == pygame.K_RETURN:
                        stato = "GAMING"
-                        
-                elif event.type == pygame.MOUSEBUTTONDOWN :
-                   
-                    if BOTTONE_START.collidepoint(mPos):
-                        stato = "GAMING"
+                
+                    if event.key == pygame.K_DOWN :
+                        if bottone_menu_selezionato == 1 :
+                            bottone_menu_selezionato = 2
+                        else :
+                            bottone_menu_selezionato = 1
                     
-                    if BOTTONE_QUIT.collidepoint(mPos):
-                        running = False
-                        stato = "GAMING"
+                    if event.key == pygame.K_UP: 
+                        if bottone_menu_selezionato == 2 :
+                            bottone_menu_selezionato = 1
+                        else :
+                            bottone_menu_selezionato = 2
+                            
+                    if event.key == pygame.K_RETURN :
+                        if bottone_menu_selezionato == 1 :
+                            stato = "GAMING"
+                            
+                        if bottone_menu_selezionato == 2 :
+                            running = False
+                            break
+                        
             
             bottone_quit_color = "red"
             
-            if BOTTONE_QUIT.collidepoint(mPos):
+            if bottone_menu_selezionato == 2 :
                 bottone_quit_color = "blue"
             
             bottone_quit = pygame.draw.rect(screen, bottone_quit_color, BOTTONE_QUIT )
             screen.blit(QUIT, (210, SCREEN_HEIGHT //2 + 50)  )
+            
             bottone_start_color = "red"
             
-            if BOTTONE_START.collidepoint(mPos):
+            if bottone_menu_selezionato == 1 :
                 bottone_start_color = "blue"
             
             bottone_start = pygame.draw.rect(screen,bottone_start_color,BOTTONE_START )
@@ -400,43 +443,58 @@ while running:
             
     if stato == "GAMEOVER1" or stato == "GAMEOVER2":
         while stato == "GAMEOVER1" or stato == "GAMEOVER2" :
-            mPos = pygame.mouse.get_pos()
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
+                running = False
+                break
+        
             
             for event in pygame.event.get():
-                if event.type == pygame.MOUSEBUTTONDOWN: 
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_RIGHT :
+                        if bottone_morte_selezionato == 1 :
+                            bottone_morte_selezionato = 2
+                        else :
+                            bottone_morte_selezionato = 1
                     
-                    if BOTTONE_RESTART.collidepoint(mPos):
-                        x1 = SCREEN_WIDTH // 4
-                        y1 = SCREEN_HEIGHT // 2
-                        x2 = SCREEN_WIDTH // 4 * 3
-                        y2 = SCREEN_HEIGHT // 2
+                    if event.key == pygame.K_LEFT: 
+                        if bottone_morte_selezionato == 2 :
+                            bottone_morte_selezionato = 1
+                        else :
+                            bottone_morte_selezionato = 2
+                            
+                    if event.key == pygame.K_RETURN :
+                        if bottone_morte_selezionato == 1 :
+                            x1 = SCREEN_WIDTH // 4
+                            y1 = SCREEN_HEIGHT // 2
+                            x2 = SCREEN_WIDTH // 4 * 3
+                            y2 = SCREEN_HEIGHT // 2
+                            
+                            w1 = 60
+                            h1 = 30
+                            w2 = 60
+                            
+                            h2 = 30
+                            bullets1 = []
+                            bullets2 = []
+                            vita1 = 10
+                            vita2 = 10
+                            ricariche1 = []
+                            ricariche2 = []
+                            
+                            stato = "GAMING"
                         
-                        w1 = 60
-                        h1 = 30
-                        w2 = 60
-                        
-                        h2 = 30
-                        bullets1 = []
-                        bullets2 = []
-                        vita1 = 10
-                        vita2 = 10
-                        ricariche1 = []
-                        ricariche2 = []
-                        
-                        stato = "GAMING"
-                    
-                    if BOTTONE_QUIT_M.collidepoint(mPos):
-                        running = False
-                        stato = "GAMING"
+                        if bottone_morte_selezionato == 2 :
+                            running = False
+                            stato = "GAMING"
             
             bottone_restart_color = "red"
            
-            if BOTTONE_RESTART.collidepoint(mPos):
+            if bottone_morte_selezionato == 1 :
                 bottone_restart_color = "blue"
             
             bottone_quit_color = "red"
             
-            if BOTTONE_QUIT_M.collidepoint(mPos):
+            if bottone_morte_selezionato == 2 :
                 bottone_quit_color = "blue"
             
             bottone_restart = pygame.draw.rect(screen,bottone_restart_color,BOTTONE_RESTART )
@@ -631,13 +689,9 @@ while running:
     life1 = pygame.draw.rect(screen, life1_color , (50, 55, 50*vita1 , 40))
     #------------------------------------------------------------------------
     #botton su lo schermo
-    mPos = pygame.mouse.get_pos()
     pausa_b = img_pausa
     
     bottone_pausa_m_color = "red"
-    if bottone_PAUSA.collidepoint(mPos):
-        bottone_pausa_m_color = "blue"
-        pausa_b = img_pausa_active
     
     bottone_pausa = pygame.draw.rect(screen,bottone_pausa_m_color,bottone_PAUSA )
     screen.blit(pausa_b, (SCREEN_WIDTH // 2 -35  , 20) )

@@ -2,9 +2,8 @@ import pygame
 from pathlib import Path
 import subprocess # lo utilizzerò solamente per avviare i giochi.py tramite codice
 pygame.init()
-
-desk = Path.home() / "Desktop"
-CG = desk / "sc" # CG sta per cartella giochi
+CurentPath = Path.cwd()
+CG = CurentPath / "games" # CG sta per cartella giochi
 
 # dichiaro tutte le cartelle dei giochi (il loro path per aprirle una volta l'utente ci vorrà giocare)
 Reaper = CG / "Escape The Reaper Marcu Piervittori"
