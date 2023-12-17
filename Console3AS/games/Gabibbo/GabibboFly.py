@@ -36,7 +36,7 @@ pygame.mixer.music.load("salto.mp3")
 pygame.mixer.music.set_volume(4.5)
 spazio = 165   # Spazio tra gli ostacoli
 gravità = 2    # forza con cui il corpo viene spinto verso il basso
-salto = 6      # potenza per ogni tocco di spazio
+salto = 8      # potenza per ogni tocco di spazio
 player_speed = 4     #velocità del gabibbo
 
 score = 0    #punteggio iniziale

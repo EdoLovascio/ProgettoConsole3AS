@@ -139,7 +139,7 @@ while running:
             break
         
         if score == 10:
-            game_over_testo = game_over_carattere.render("YOU WON!",True, "green")
+            game_over_testo = game_over_carattere.render("YOU WON!",True, "black")
             game_over_rettangolo= game_over_testo.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
             screen.blit(game_over_testo, game_over_rettangolo)
             pygame.display.flip()
