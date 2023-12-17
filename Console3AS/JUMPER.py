@@ -324,8 +324,8 @@ while running:
         screen.blit(Drago,(xDD2 - 50, yDD))
         
         # Movimento del drago
-        xD2 -= speed * 6
-        xDD2 -= speed * 4
+        xD2 -= speed * 4
+        xDD2 -= speed * 3
         
         screen.blit(nuvolaScura, (790, 500))
         screen.blit(nuvolaScura, (260, 350))
@@ -453,8 +453,8 @@ while running:
         screen.blit(Drago,(xDD3 - 110, yDD2))
         
         # Velocità del drago
-        xD3 -= speed * 6
-        xDD3 -= speed * 4
+        xD3 -= speed * 4
+        xDD3 -= speed * 3
         
         screen.blit(nuvolaScura, (screen_x // 2 - 10, 500))
         screen.blit(nuvolaScura, (170, 350))
