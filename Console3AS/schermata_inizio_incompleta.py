@@ -2,13 +2,14 @@ import pygame
 from pathlib import Path
 import subprocess # lo utilizzerò solamente per avviare i giochi.py tramite codice
 pygame.init()
-CurentPath = Path.cwd()
-CG = CurentPath / "games" # CG sta per cartella giochi
+
+percorso = Path.cwd()
+CG = percorso / "games" # CG sta per cartella giochi / games è la cartella situata su Github
 
 # dichiaro tutte le cartelle dei giochi (il loro path per aprirle una volta l'utente ci vorrà giocare)
 Reaper = CG / "Escape_The_Reaper"
 Gabibbo = CG / "Gabibbo"
-Ficosecco = CG / "Ficosecco"
+Fico = CG / "Ficosecco"
 Jumper = CG / "Jumper"
 PacMan = CG / "Pac-Man"
 Snake = CG / "Snake"
@@ -22,13 +23,16 @@ Sparabolle = CG / "Sparabolle"
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestra
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # creo la finestra
 
 font = pygame.font.SysFont('Arial', 30)
 
+# creo la lista con i nomi dei giochi
+ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "Pac-Man" , "Snake" , "Space Something" , "Space wars" , "Sparabolle"]
+
 # Crea una lista di 9 rettangoli per i pulsanti
 ListaButton = []
- #misure pulsanti
+# misure pulsanti
 buttonWidth = 200
 buttonHeight = 100
 buttonMargin = 50
@@ -61,74 +65,87 @@ while running:
             running = False
 
 
-    screen.fill("white")
+    screen.fill("white") # coloro lo sfondo di bianco
     
     for buttonRect in ListaButton:
-        buttonColor = "red"
+        buttonColor = "red" # colore normale: rosso
         if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
-            buttonColor = "green"
-        pygame.draw.rect(screen, buttonColor, buttonRect)
+            buttonColor = "green" # colore se sono sopra con il mouse: verde
+        pygame.draw.rect(screen, buttonColor, buttonRect) # disegno il bottone
     # do un nome ai pulsanti dei vari giochi
     NameButton = [] # lista per i nomi dei bottoni
     for x, buttonRect in enumerate(ListaButton):
-        textRect = font.render(f'Pulsante {x + 1}', True, "white")
+        textRect = font.render(ListaNomiGiochi[x], True, "white") # abbino ogni bottone al nome del corrispettivo gioco
         NameButton.append(x) # aggiungo il nome del pulsante alla lista
         screen.blit(textRect, (buttonRect.x + 10, buttonRect.y + 10))
         
-    if event.type == pygame.MOUSEBUTTONDOWN:
+    if event.type == pygame.MOUSEBUTTONDOWN: # se clicco il tasto del mouse...
     # Loop attraverso tutti i pulsanti
         for buttonRect in ListaButton:
             if buttonRect.collidepoint(mPos):
                 # per ogni pulsante che clicco mi apre un gioco diverso
                 if ListaButton.index(buttonRect) == NameButton[0]:
-                   filePath = Reaper / "escapethereaperv2.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[1]:
-                   filePath = Gabibbo / "GabibboFly.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[2]:
-                   filePath = Ficosecco / "Gioco.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[3]:
-                   filePath = Jumper / "JUMPER.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[4]:
-                   filePath = PacMan / "Pac-Man.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[5]:
-                   filePath = Snake / "Snake.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[6]:
-                   filePath = SpaceSomething / "SPACE_SOMETHING.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[7]:
-                   filePath = SpaceWars / "GuerreSpaziali.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
-                if ListaButton.index(buttonRect) == NameButton[8]:
-                   filePath = Sparabolle / "Sparabolle.py"
-                   file = filePath.open()
-                   comando = ["python", str(filePath)] # mi servirà per avviare i giochi
-                   subprocess.run(comando)
+                   for x in Reaper.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
                 
-
-        
-        
+                if ListaButton.index(buttonRect) == NameButton[1]:
+                    for x in Gabibbo.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[2]:
+                    for x in Fico.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[3]:
+                    for x in Jumper.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[4]:
+                    for x in PacMan.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[5]:
+                    for x in Snake.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[6]:
+                    for x in SpaceSomething.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[7]:
+                    for x in SpaceWars.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
+                
+                if ListaButton.index(buttonRect) == NameButton[8]:
+                    for x in Sparabolle.glob("*py"):
+                       filePath = CG / x
+                       file = filePath.open()
+                       comando = ["python", str(filePath)] # mi servirà per avviare i giochi
+                       subprocess.run(comando)
     
 
     pygame.display.flip()
