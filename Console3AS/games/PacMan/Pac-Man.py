@@ -95,7 +95,7 @@ class GameObject:
 
 #crea i muri e li colora
 class Wall(GameObject):
-    def __init__(self, in_surface, x, y, in_size: int, in_color=(0, 0, 255)):
+    def __init__(self, in_surface, x, y, in_size: int, in_color=(10, 10, 255)):
         super().__init__(in_surface, x * in_size, y * in_size, in_size, in_color)
 
 
@@ -108,7 +108,7 @@ class GameRenderer:
         self._height = in_height
         self._screen = pygame.display.set_mode((in_width, in_height))
         #nome sopra lo schermo
-        pygame.display.set_caption('Pac-Man by Valeria e Giulia')
+        pygame.display.set_caption('Pac-Man')
         self._clock = pygame.time.Clock()
         self._done = False
         self._won = False
@@ -125,7 +125,7 @@ class GameRenderer:
         #Pac-Man
         self._hero: Hero = None
         #vite di Pac-Man
-        self._lives = 1
+        self._lives = 3
         #punteggio per ogni oggetto mangiato
         self._score = 0
         self._score_cookie_pickup = 10
@@ -163,7 +163,7 @@ class GameRenderer:
 
             #scritte che appaiono se vinci o perdi il gioco
             if self._hero is None: self.display_text("GAME OVER", (self._width / 2 - 256, self._height / 2 - 256), 100)
-            if self._hero is None: self.display_text("Click ESC to exit",( self._width / 2 - 128, self._height / 2 - 100), 50)
+            if self._hero is None: self.display_text("Click ESC to exit",( self._width / 2.12 - 128, self._height / 2 - 100), 50)
             if self.get_won(): self.display_text("YOU WON", (self._width / 2 - 256, self._height / 2 - 256), 100)
             pygame.display.flip()
             self._clock.tick(in_fps)
@@ -559,13 +559,13 @@ class Ghost(MovableObject):
 #crea i cookie (gialli)
 class Cookie(GameObject):
     def __init__(self, in_surface, x, y):
-        super().__init__(in_surface, x, y, 4, (255, 255, 0), True)
+        super().__init__(in_surface, x, y, 4, (255, 200, 00), True)
 
 
 #crea i powerup (arancioni)
 class Powerup(GameObject):
     def __init__(self, in_surface, x, y):
-        super().__init__(in_surface, x, y, 8, (255, 128, 0), True)
+        super().__init__(in_surface, x, y, 8, (255, 50, 10), True)
 
 
 #crea i sentieri
@@ -597,9 +597,9 @@ class PacmanGameController:
             "XXXXXX XX         XX XXXXXX",
             "XXXXXX XX XXX XXX XX XXXXXX",
             "          X G G X          ",
-            "XXXXXX XX X GG  X XX XXXXXX",
+            "XXXXXX XX X G G X XX XXXXXX",
             "XXXXXX XX XXXXXXX XX XXXXXX",
-            "XXXXXX XX         XX XXXXXX",
+            "XXXXXXOXX         XXOXXXXXX",
             "XXXXXX XX XXXXXXX XX XXXXXX",
             "XXXXXX XX XXXXXXX XX XXXXXX",
             "X            X            X",
@@ -706,6 +706,7 @@ if __name__ == "__main__":
 
 #chiude pygame
 pygame.quit()
+
 
 
 
