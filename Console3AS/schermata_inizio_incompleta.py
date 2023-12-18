@@ -62,10 +62,10 @@ while running:
             running = False
 
 
-    screen.fill("white") #coloro lo sfondo di bianco
+    screen.fill("black") #coloro lo sfondo di bianco
     
     for buttonRect in ListaButton:
-        buttonColor = "red" #colore normale: rosso
+        buttonColor = "purple" #colore normale: rosso
         if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
             buttonColor = "green" #colore se sono sopra con il mouse: verde
         pygame.draw.rect(screen, buttonColor, buttonRect) #disegno il bottone
