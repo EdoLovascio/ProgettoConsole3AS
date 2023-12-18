@@ -3,12 +3,16 @@
 import pygame
 import random
 import time
+from pathlib import Path
 
 #dopo aver importato le due funzioni "random " e "pygame" iniziamo la creazione del gioco definendo le dimensioni larghezza e lunghezza dello schermo
 pygame.init()
 
+homePath = Path.cwd()
+captatoPath = homePath / "games" / "Ficosecco" / "CAPTATO.mp3"
+
 pygame.mixer.init()   #suoni
-pygame.mixer.music.load("CAPTATO.mp3") 
+pygame.mixer.music.load(captatoPath) 
 pygame.mixer.music.set_volume(5.5) 
 pygame.mixer.music.play()
 
@@ -32,13 +36,25 @@ close_tip = Normalfont.render("Click ESC to exit", True, "blue","yellow")
 punteggio = Normalfont.render("Il punteggio si trova sotto" , conta, True, "yellow")
 #Importiamo le immagini che poi andremo a posizionare nel gioco. Infatti utilizzeremo un immagine sfondo che andremo a modellare sull'intera finestra di gioco
 #ma useremo anche due immagini diverse per i due nemicie una per il player che dopo aver importato andremo a definire la grandezza come ci piace
-imgSfondo = pygame.image.load("classe.jpg") 
+
+sfondoPath = homePath / "games" / "Ficosecco" / "classe.jpg"
+
+imgSfondo = pygame.image.load(sfondoPath)
 imgSfondo = pygame.transform.scale(imgSfondo,(SCREEN_WIDTH,SCREEN_HEIGHT))
-imgFico = pygame.image.load("Fico.jpg") 
+
+ficoPath = homePath / "games" / "Ficosecco" / "Fico.jpg"
+
+imgFico = pygame.image.load(ficoPath) 
 imgFico = pygame.transform.scale(imgFico,(100,100))
-imgTre = pygame.image.load("Tre.png") 
+
+trePath = homePath / "games" / "Ficosecco" / "Tre.png"
+
+imgTre = pygame.image.load(trePath) 
 imgTre = pygame.transform.scale(imgTre,(40,40))
-imgSei = pygame.image.load("Sei.jfif") 
+
+seiPath = homePath / "games" / "Ficosecco" / "Sei.jfif"
+
+imgSei = pygame.image.load(seiPath) 
 imgSei = pygame.transform.scale(imgSei,(40,40))
 
 

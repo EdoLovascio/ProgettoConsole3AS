@@ -1,7 +1,5 @@
-- 👋 Hi, I’m @EdoLovascio
-- 🌱 I’m currently learning Python
 
-<!---
-EdoLovascio/EdoLovascio is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+Progetto Console3AS
+
+by: Arnau, Giulia, Matteo, Vincenzo, Daud, Sofia, Edoardo, Giulio, Jessica
+
