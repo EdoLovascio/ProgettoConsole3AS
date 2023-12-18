@@ -5,14 +5,26 @@ import numpy as np
 import tcod
 import random
 from enum import Enum
+from pathlib import Path
 
 
 pygame.init()
 
+homePath = Path.cwd()
+
+musicPath = homePath / "games" / "PacMan" / "Pac-Man Intro Music - Gaming Background Music.mp3"
+ghostPath = homePath / "games" / "PacMan" / "ghost.png"
+ghost_bluePath = homePath / "games" / "PacMan" / "ghost_blue.png"
+ghost_frightPath = homePath / "games" / "PacMan" / "ghost_fright.png"
+ghost_orangePath = homePath / "games" / "PacMan" / "ghost_orange.png"
+ghost_pinkPath = homePath / "games" / "PacMan" / "ghost_pink.png"
+pakuPath = homePath / "games" / "PacMan" / "paku.png"
+manPath = homePath / "games" / "PacMan" / "man.png"
+
 
 #mette il suono di pac-man
-pygame.mixer.init() 
-pygame.mixer.music.load("Pac-Man Intro Music - Gaming Background Music.mp3") 
+pygame.mixer.init()
+pygame.mixer.music.load(musicPath) 
 pygame.mixer.music.set_volume(0.5) 
 pygame.mixer.music.play()
 
@@ -338,7 +350,7 @@ class MovableObject(GameObject):
         self.location_queue = []
         self.next_target = None
         #immagine del fantasmino rosso
-        self.image = pygame.image.load('ghost.png')
+        self.image = pygame.image.load(ghostPath)
 
     def get_next_location(self):
         return None if len(self.location_queue) == 0 else self.location_queue.pop(0)
@@ -394,8 +406,8 @@ class Hero(MovableObject):
     def __init__(self, in_surface, x, y, in_size: int):
         super().__init__(in_surface, x, y, in_size, (255, 255, 0), False)
         self.last_non_colliding_position = (0, 0)
-        self.open = pygame.image.load("paku.png")
-        self.closed = pygame.image.load("man.png")
+        self.open = pygame.image.load(pakuPath)
+        self.closed = pygame.image.load(manPath)
         self.image = self.open
         self.mouth_open = True
 
@@ -492,12 +504,12 @@ class Hero(MovableObject):
 
 #crea i fantasmini
 class Ghost(MovableObject):
-    def __init__(self, in_surface, x, y, in_size: int, in_game_controller, sprite_path="ghost_fright.png"):
+    def __init__(self, in_surface, x, y, in_size: int, in_game_controller, sprite_path=ghost_frightPath):
         super().__init__(in_surface, x, y, in_size)
         self.game_controller = in_game_controller
         self.sprite_normal = pygame.image.load(sprite_path)
         #quando viene preso il powerup, i fantasmini cambiano aspetto
-        self.sprite_fright = pygame.image.load("ghost_fright.png")
+        self.sprite_fright = pygame.image.load(ghost_frightPath)
 
     def reached_target(self):
         if (self.x, self.y) == self.next_target:
@@ -622,10 +634,10 @@ class PacmanGameController:
         self.reachable_spaces = []
         self.ghost_spawns = []
         self.ghost_colors = [
-            "ghost.png",
-            "ghost_pink.png",
-            "ghost_orange.png",
-            "ghost_blue.png"
+            ghostPath,
+            ghost_pinkPath,
+            ghost_orangePath,
+            ghost_bluePath
         ]
         self.size = (0, 0)
         self.convert_maze_to_numpy()

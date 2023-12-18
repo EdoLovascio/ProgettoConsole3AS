@@ -85,7 +85,7 @@ while running:
             muri.append((SCREEN_WIDTH, muro_height))
 
     keys = pygame.key.get_pressed()
-    if keys[pygame.K_SPACE] and y > 0:       #funzione per il salto, se viene premuto lo spazio esso provoca un movimento di valore salto
+    if keys[pygame.K_UP] and y > 0:       #funzione per il salto, se viene premuto lo spazio esso provoca un movimento di valore salto
         y -= salto
         pygame.mixer.music.play()
 

@@ -118,6 +118,7 @@ while running:
                        file = filePath.open()
                        comando = ["python", str(filePath)] # mi servirà per avviare i giochi
                        subprocess.run(comando)
+               
                 if ListaButton.index(buttonRect) == NameButton[5]:
                     for x in Snake.glob("*py"):
                        filePath = CG / x
