@@ -1,5 +1,6 @@
 import pygame
 import random
+from pathlib import Path
 
 pygame.init()
 
@@ -12,8 +13,14 @@ pygame.display.set_caption("Snake")
 w = 20
 h = 20
 
-imgSfondo = pygame.image.load("erba.jpg") 
+homePath = Path.cwd()
+
+sfondoPath = homePath / "games" / "Snake" / "erba.jpg"
+
+imgSfondo = pygame.image.load(sfondoPath) 
 imgSfondo = pygame.transform.scale(imgSfondo,(SCREEN_WIDTH,SCREEN_HEIGHT))
+
+melaPath = homePath / "games" / "Snake" / "mela.png"
 
 imgMela = pygame.image.load("mela.png")
 imgMela = pygame.transform.scale(imgMela,(w,h))

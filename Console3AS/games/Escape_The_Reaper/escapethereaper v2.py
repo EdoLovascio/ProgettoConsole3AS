@@ -2,12 +2,18 @@
 import pygame
 import random
 import time
+from pathlib import Path
 
 pygame.init()
 
 #scelgo la musica da mettere
-pygame.mixer.init() 
-pygame.mixer.music.load("musicagioco.mp3") 
+pygame.mixer.init()
+
+homePath = Path.cwd()
+
+musicPath = homePath / "games" / "Escape_The_Reaper" / "musicagioco.mp3"
+
+pygame.mixer.music.load(musicPath) 
 pygame.mixer.music.set_volume(1.0) 
 pygame.mixer.music.play(loops=-1)
 
@@ -21,19 +27,27 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("ESCAPE THE REAPER")
 
 #scelgo lo sfondo
-imgSfondo = pygame.image.load("pavimento.png") 
+pavimentoPath = homePath / "games" / "Escape_The_Reaper" / "pavimento.png"
+
+imgSfondo = pygame.image.load(pavimentoPath) 
 imgSfondo = pygame.transform.scale(imgSfondo,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 #scelgo la protagonista
-imgGirl = pygame.image.load("girlrpg.png") 
+girlPath = homePath / "games" / "Escape_The_Reaper" / "girlrpg.png"
+
+imgGirl = pygame.image.load(girlPath) 
 imgGirl = pygame.transform.scale(imgGirl,(40,40))
 
 #scelgo i nemici
-imgEnemy = pygame.image.load("enemies.png") 
+enemyPath = homePath / "games" / "Escape_The_Reaper" / "enemies.png"
+
+imgEnemy = pygame.image.load(enemyPath) 
 imgEnemy = pygame.transform.scale(imgEnemy,(40,40))
 
 #scelgo la cura
-imgXanax = pygame.image.load("cura.png") 
+curaPath = homePath / "games" / "Escape_The_Reaper" / "cura.png"
+
+imgXanax = pygame.image.load(curaPath) 
 imgXanax = pygame.transform.scale(imgXanax,(30,30))
 
 #aggiungo le scritte
