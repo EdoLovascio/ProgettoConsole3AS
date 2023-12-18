@@ -1,6 +1,6 @@
 import pygame
 import random
-
+from pathlib import Path
 # Inizializzazione
 pygame.init()
 
@@ -164,7 +164,8 @@ def game():
 
 
         # Sfondo
-        sfondo = pygame.image.load("cielo.png")
+        sfondoPath = Path.cwd() / "games" / "Sparabolle" / "cielo.png"
+        sfondo = pygame.image.load(sfondoPath)
         sfondo = pygame.transform.scale(sfondo,(WIDTH, HEIGHT))
         screen.blit(sfondo,(0,0))
 
