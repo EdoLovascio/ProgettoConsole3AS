@@ -20,7 +20,7 @@ Sparabolle = CG / "Sparabolle"
 #-------------------------------------#
 # variabili
 
-SCREEN_WIDTH = 800
+SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestra
@@ -33,7 +33,7 @@ ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "Pac-Ma
 # Crea una lista di 9 rettangoli per i pulsanti
 ListaButton = []
 # misure pulsanti
-buttonWidth = 200
+buttonWidth = 230
 buttonHeight = 100
 buttonMargin = 50
 
