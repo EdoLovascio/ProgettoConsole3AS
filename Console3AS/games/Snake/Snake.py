@@ -22,7 +22,7 @@ imgSfondo = pygame.transform.scale(imgSfondo,(SCREEN_WIDTH,SCREEN_HEIGHT))
 
 melaPath = homePath / "games" / "Snake" / "mela.png"
 
-imgMela = pygame.image.load("mela.png")
+imgMela = pygame.image.load(melaPath)
 imgMela = pygame.transform.scale(imgMela,(w,h))
 
 # Velocità del serpente
