@@ -6,6 +6,10 @@
 import pygame
 import random
 import time
+from pathlib import Path
+
+path_currente = Path.cwd()
+path_cartella_gioco = path_currente / "games" / "Jumper"
 
 pygame.init()
 
@@ -57,45 +61,49 @@ livello = 0
 
 # ------------------------------------------------------------------------
 # immagini
-
-HermanoD = pygame.image.load("Hermano.png")
+path_HermanoD = path_cartella_gioco / "Hermano.png"
+HermanoD = pygame.image.load(path_HermanoD)
 HermanoD = pygame.transform.scale(HermanoD, (80, 80))
 
-HermanoS = pygame.image.load("HermanoS.png")
+path_HermanoS = path_cartella_gioco / "HermanoS.png"
+HermanoS = pygame.image.load(path_HermanoS)
 HermanoS = pygame.transform.scale(HermanoS, (80, 80))
 
 Hermano = HermanoD
 
-
-Drago = pygame.image.load("flying dragon.gif")
+path_flying_dragon = path_cartella_gioco / "flying dragon.gif"
+Drago = pygame.image.load(path_flying_dragon)
 Drago = pygame.transform.scale(Drago, (150, 50))
 
-
-prato = pygame.image.load("prato.png")
+path_prato = path_cartella_gioco / "prato.png"
+prato = pygame.image.load(path_prato)
 prato = pygame.transform.scale(prato, (500, 250))
 
-
-nuvolaChiara = pygame.image.load("nuvola chiara.png")
+path_nuvolaChiara = path_cartella_gioco / "nuvola chiara.png"
+nuvolaChiara = pygame.image.load(path_nuvolaChiara)
 nuvolaChiara = pygame.transform.scale(nuvolaChiara,(110,110))
 
-nuvolaScura = pygame.image.load("nuvola scura.png")
+path_nuvolaScura = path_cartella_gioco /"nuvola scura.png"
+nuvolaScura = pygame.image.load(path_nuvolaScura)
 nuvolaScura = pygame.transform.scale(nuvolaScura,(110,110))
 
-nuvolaScurissima = pygame.image.load("nuvola ancora più scura.png")
+path_nuvolaScurissima = path_cartella_gioco /"nuvola ancora più scura.png"
+nuvolaScurissima = pygame.image.load(path_nuvolaScurissima)
 nuvolaScurissima = pygame.transform.scale(nuvolaScurissima,(110,110))
 
-nuvolaGrande = pygame.image.load("nuvola grande.png")
+path_nuvolaGrande = path_cartella_gioco /"nuvola grande.png"
+nuvolaGrande = pygame.image.load(path_nuvolaGrande)
 nuvolaGrande = pygame.transform.scale(nuvolaGrande,(500,500))
 
-
-castello = pygame.image.load("Castello Bello.png")
+path_castello = path_cartella_gioco /"Castello Bello.png"
+castello = pygame.image.load(path_castello)
 castello = pygame.transform.scale(castello,(600,600))
 
 # --------------------------------------------------------------------------
 # Suoni
-
+path_suonoSalto = path_cartella_gioco /"suonoSalto.mp3"
 pygame.mixer.init()
-pygame.mixer.music.load("suonoSalto.mp3")
+pygame.mixer.music.load(path_suonoSalto)
 pygame.mixer.music.set_volume(0.5)
 
 # ----------------------------------------------------------------------------
