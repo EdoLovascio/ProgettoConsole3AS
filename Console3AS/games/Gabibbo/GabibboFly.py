@@ -1,6 +1,7 @@
 #importazione pacchetto pygame e funzione random
 import pygame
 import random
+from pathlib import Path
 
 #inizio modifiche
 pygame.init()
@@ -14,6 +15,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 #titolo del gioco
 pygame.display.set_caption("GABIBBOFLY")
+
+path_home = Path.cwd()
 
 #spawn delle mura con intervalli di 2 secondi uno dall'altro 
 SPAWN_MURI = pygame.USEREVENT + 1
@@ -32,7 +35,9 @@ h = 45
 
 #funzioni per musica
 pygame.mixer.init()
-pygame.mixer.music.load("salto.mp3")
+salto_path = path_home / "games" / "Gabibbo" / "salto.mp3"
+pygame.mixer.music.load(salto_path)
+
 pygame.mixer.music.set_volume(4.5)
 spazio = 180   # Spazio tra gli ostacoli
 gravità = 3    # forza con cui il corpo viene spinto verso il basso
@@ -44,17 +49,21 @@ score = 0    #punteggio iniziale
 running = True   
 
 #importo immagine del player(gabibbo)
-player_img = pygame.image.load("gabibbo.png")
+gabibbo_path = path_home / "games" / "Gabibbo" / "gabibbo.png"
+player_img = pygame.image.load(gabibbo_path)
 player_img = pygame.transform.scale(player_img, (w, h))
-#importo immagine del muro basso 
-muro1_img = pygame.image.load("spadaDOWN.png")
+#importo immagine del muro basso
+spadaDOWN_path = path_home / "games" / "Gabibbo" / "spadaDOWN.png"
+muro1_img = pygame.image.load(spadaDOWN_path)
 muro1_img = pygame.transform.scale(muro1_img, (60, SCREEN_HEIGHT))
-#importo immagine muro alto 
-muro2_img = pygame.image.load("spadaUP.png")
+#importo immagine muro alto
+spadaUP_path = path_home / "games" / "Gabibbo" / "spadaUP.png"
+muro2_img = pygame.image.load(spadaUP_path)
 muro2_img = pygame.transform.scale(muro2_img, (60, SCREEN_HEIGHT))
 
-#importo sfondo 
-screen_img = pygame.image.load("GerryScotti.png")
+#importo sfondo
+GerryScotti_path = path_home / "games" / "Gabibbo" / "GerryScotti.png"
+screen_img = pygame.image.load(GerryScotti_path)
 screen_img = pygame.transform.scale(screen_img, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 #font per la il punteggio(ostacoli evitati e game over)
