@@ -7,6 +7,7 @@
 # Importiamo i moduli pygame e random
 import pygame
 import random
+from pathlib import Path
 
 # Importiamo i vari tasti della tastiera
 from pygame.locals import (
@@ -27,13 +28,15 @@ from pygame.locals import (
     K_RETURN
 )
 
-
+path_currente = Path.cwd()
+path_cartella_gioco = path_currente / "games" / "Space_Something"
 pygame.init()
 
 # MUSICA SOTTOFONDO
 pygame.mixer.init()
 
-pygame.mixer.music.load("Spaceinvaders.mpeg")
+path_Spaceinvaders = path_cartella_gioco / "Spaceinvaders.mpeg"
+pygame.mixer.music.load(path_Spaceinvaders)
 pygame.mixer.music.set_volume(0.1)
 pygame.mixer.music.play()
 
@@ -44,8 +47,8 @@ SCREEN_HEIGHT = 800
 
 screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
 
-
-imgSfondo = pygame.image.load("Spazio3.png")
+path_Sfondo = path_cartella_gioco / "Spazio3.png"
+imgSfondo = pygame.image.load(path_Sfondo)
 imgSfondo = pygame.transform.scale(imgSfondo, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 # POSIZIONE INIZIALE PLAYER
@@ -74,11 +77,14 @@ speed = 20
 #---------------------------------------------
 # GAMING
 # player1
-img_navicella1 = pygame.image.load("Navicella1.png")
+path_navicella1 = path_cartella_gioco / "Navicella1.png"
+path_navicella2 = path_cartella_gioco / "Navicella2.png"
+
+img_navicella1 = pygame.image.load(path_navicella1)
 img_navicella1 = pygame.transform.scale(img_navicella1, (w1, h1))
 
 # player2
-img_navicella2 = pygame.image.load("Navicella2.png")
+img_navicella2 = pygame.image.load(path_navicella2)
 img_navicella2 = pygame.transform.scale(img_navicella2, (w2, h2))
 
 # BULLET
@@ -88,14 +94,17 @@ bullets1 = []
 bullets2 = []
 
 # BULLET SOUND
+path_bullet_sound = path_cartella_gioco / "Bullet_sound.wav"
+path_bullet_impact = path_cartella_gioco / "Bullet_impact.wav"
+path_bullet_explosion = path_cartella_gioco / "Explosion.wav"
 
-bullet_SOUND = pygame.mixer.Sound("Bullet_sound.wav")
+bullet_SOUND = pygame.mixer.Sound(path_bullet_sound)
 pygame.mixer.Sound.set_volume(bullet_SOUND , 0.1)
 
-bullet_IMPACT = pygame.mixer.Sound("Bullet_impact.wav")
+bullet_IMPACT = pygame.mixer.Sound(path_bullet_impact)
 pygame.mixer.Sound.set_volume(bullet_IMPACT , 0.1)
 
-player_explosion = pygame.mixer.Sound("Explosion.wav")
+player_explosion = pygame.mixer.Sound(path_bullet_explosion)
 pygame.mixer.Sound.set_volume(player_explosion, 0.5)
 
 # LIFE
@@ -104,7 +113,8 @@ vita2 = 10
 
 
 #RICARICHE
-ricarica_SOUND = pygame.mixer.Sound("Suono_ricarica.mp3")
+path_suono_ricarica = path_cartella_gioco / "Suono_ricarica.mp3"
+ricarica_SOUND = pygame.mixer.Sound(path_suono_ricarica )
 pygame.mixer.Sound.set_volume(ricarica_SOUND, 0.8)
 
 # SPAWN RICARICA FOR  PLAYER1 
@@ -123,19 +133,23 @@ ricariche2 = []
 
 
 #ricarica1
-img_ricarica1 = pygame.image.load("Ricarica.png")
+path_ricarica = path_cartella_gioco / "Ricarica.png"
+img_ricarica1 = pygame.image.load(path_ricarica)
 img_ricarica1 = pygame.transform.scale(img_ricarica1, (40, 40))
 
 #ricarica2
-img_ricarica2 = pygame.image.load("Ricarica.png")
+img_ricarica2 = pygame.image.load(path_ricarica)
 img_ricarica2 = pygame.transform.scale(img_ricarica2, (40, 40))
 
 #--------------------------
 #SCRITTE
-font = pygame.font.Font("retro_computer_personal_use.ttf" ,40)
-font1 = pygame.font.Font("Early GameBoy.ttf" ,60)
-font2 = pygame.font.Font("Early GameBoy.ttf" ,80)
-font3 = pygame.font.Font("retro_computer_personal_use.ttf" ,40)
+path_font_retro = path_cartella_gioco / "retro_computer_personal_use.ttf"
+path_font_early = path_cartella_gioco /"Early GameBoy.ttf"
+
+font = pygame.font.Font(path_font_retro ,40)
+font1 = pygame.font.Font(path_font_early ,60)
+font2 = pygame.font.Font(path_font_early ,80)
+font3 = pygame.font.Font(path_font_retro ,40)
 
 
 TITOLO1 = font2.render('SPACE' , True , "white")
@@ -170,26 +184,31 @@ bottone_pausa_selezionato = 1
 stato = "STARTING"
 
 # SFONDO MENU
-img_STARTING = pygame.image.load("Spazio4.png")
+path_img_starting = path_cartella_gioco /"Spazio4.png"
+img_STARTING = pygame.image.load(path_img_starting)
 img_STARTING = pygame.transform.scale(img_STARTING, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 BOTTONE_START = pygame.Rect(200, SCREEN_HEIGHT //2 - 50 , 180, 50)
 BOTTONE_QUIT = pygame.Rect( 200, SCREEN_HEIGHT //2 + 50  , 150, 50)
 
-img_wasd = pygame.image.load("WASD.png")
+path_wasd = path_cartella_gioco /"WASD.png"
+path_arrow = path_cartella_gioco /"ARROW.png"
+path_invio = path_cartella_gioco /"INVIO.png"
+
+img_wasd = pygame.image.load(path_wasd)
 img_wasd  = pygame.transform.scale(img_wasd, (205, 205 ))
 
-img_arrow = pygame.image.load("ARROW.png")
+img_arrow = pygame.image.load(path_arrow)
 img_arrow   = pygame.transform.scale(img_arrow , (205, 205 ))
 
-img_invio =  pygame.image.load("INVIO.png")
+img_invio =  pygame.image.load(path_invio)
 img_invio  = pygame.transform.scale(img_invio, (205, 205 ))
 
-img_navicella3 = pygame.image.load("Navicella1.png")
+img_navicella3 = pygame.image.load(path_navicella1)
 img_navicella3 = pygame.transform.scale(img_navicella3, (120, 113 ))
 img_navicella3 = pygame.transform.rotate(img_navicella3, 90 )
 
-img_navicella4 = pygame.image.load("Navicella2.png")
+img_navicella4 = pygame.image.load(path_navicella2)
 img_navicella4 = pygame.transform.scale(img_navicella4, (120, 113 ) )
 img_navicella4 = pygame.transform.rotate(img_navicella4, 270 )
 
@@ -200,7 +219,8 @@ bottone_menu_selezionato = 1
 BOTTONE_QUIT_M = pygame.Rect((SCREEN_WIDTH // 4)*2.5, SCREEN_HEIGHT //2 , 150, 50)
 BOTTONE_RESTART = pygame.Rect(SCREEN_WIDTH // 4, SCREEN_HEIGHT //2 ,  230, 50)
 
-img_coppa = pygame.image.load("COPPA.png")
+path_coppa = path_cartella_gioco /"COPPA.png"
+img_coppa = pygame.image.load(path_coppa)
 img_coppa = pygame.transform.scale(img_coppa, (200, 200 ) )
 
 bottone_morte_selezionato = 1
@@ -209,15 +229,20 @@ bottone_morte_selezionato = 1
 # SCHERMO
 bottone_PAUSA = pygame.Rect(SCREEN_WIDTH // 2 - 29  , 24 , 45 , 45 )
 
-img_pausa = pygame.image.load("PAUSA3.png")
-img_pausa_active = pygame.image.load("PAUSA4.png")
+path_pausa3 = path_cartella_gioco /"PAUSA3.png"
+path_pausa4 = path_cartella_gioco /"PAUSA4.png"
+path_cornice = path_cartella_gioco /"CORNICE.png"
+path_interno = path_cartella_gioco /"INTERNO1.png"
+
+img_pausa = pygame.image.load(path_pausa3)
+img_pausa_active = pygame.image.load(path_pausa4)
 img_pausa  = pygame.transform.scale(img_pausa, (60 , 60 ))
 img_pausa_active = pygame.transform.scale(img_pausa_active , (60 , 60 ))
 
-img_cornice = pygame.image.load("CORNICE.png")
+img_cornice = pygame.image.load(path_cornice)
 img_cornice  = pygame.transform.scale(img_cornice, (1000, 700 ))
 
-img_interno =pygame.image.load("INTERNO1.png").convert_alpha()
+img_interno =pygame.image.load(path_interno).convert_alpha()
 img_interno = pygame.transform.scale(img_interno, (1000 , 700 ))
 img_interno.set_alpha(10)
 
