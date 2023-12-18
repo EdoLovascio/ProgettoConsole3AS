@@ -579,7 +579,7 @@ while running:
     if pressed_keys[K_RIGHT] and x2 < SCREEN_WIDTH - w2: 
         x2 += speed 
 
-    if pressed_keys[K_KP_ENTER] and len(bullets2)< 10:
+    if pressed_keys[K_RETURN] and len(bullets2)< 10:
         x4 = x2
         y4 = y2
         bullets2.append( (x4, y4) )
