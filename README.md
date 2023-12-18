@@ -1,5 +1,5 @@
 
 Progetto Console3AS
 
-by:
-- 
+by: Arnau, Giulia, Matteo, Vincenzo, Daud, Sofia, Edoardo, Giulio, Jessica
+
