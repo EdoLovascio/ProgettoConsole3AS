@@ -6,6 +6,11 @@
 # Importiamo i moduli necessari per il gioco, in questo caso il modulo random e pygame
 import pygame
 import random
+from pathlib import Path
+
+path_currente = Path.cwd()
+path_cartella_gioco = path_currente / "games" / "Space_Wars"
+
 
 pygame.init()
 
@@ -13,6 +18,8 @@ pygame.init()
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
+#bottone inziale selezionato
+bottone_selezionato = 1
 # Creiamo lo schermo di gioco
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Guerre spaziali")
@@ -26,16 +33,20 @@ enemies = []
 shots = []
 specialenemies = []
 # Carichiamo le immagini dello sfondo, dell' astronave e dei nemici
-imgSfondo = pygame.image.load("sfondo.jpg")
+path_sfondo = path_cartella_gioco / "sfondo.jpg"
+imgSfondo = pygame.image.load(path_sfondo)
 imgSfondo = pygame.transform.scale(imgSfondo, (SCREEN_WIDTH, SCREEN_HEIGHT))
 
-imgAstronave = pygame.image.load("astronave.jpg")
+path_astronave = path_cartella_gioco / "astronave.jpg"
+imgAstronave = pygame.image.load(path_astronave)
 imgAstronave = pygame.transform.scale(imgAstronave, (80, 80))
 
-imgNemici = pygame.image.load("nemici.jpg")
+path_nemici = path_cartella_gioco / "nemici.jpg"
+path_nemici2 = path_cartella_gioco / "nemici2.jpg"
+imgNemici = pygame.image.load(path_nemici)
 imgNemici = pygame.transform.scale(imgNemici, (40, 40))
 
-imgNemici2 = pygame.image.load("nemici2.jpg")
+imgNemici2 = pygame.image.load(path_nemici2)
 imgNemici2 = pygame.transform.scale(imgNemici2, (40, 40))
 
 # Definiamo la posizione iniziale dell'astronave, la posizione iniziale è al centro dello schermo
@@ -75,11 +86,15 @@ scrittaRect = fontTitolo.render("GUERRE SPAZIALI", True, "white")
 titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 3))
 
 # Creiamo il testo e il rettangolo per il pulsante "Gioca" nel menu
-textRect = font.render('Gioca', True, "white")
+
+colorGioca = "red"
+colorIstruzioni = "white"
+    
+textRect = font.render('Gioca', True, colorGioca)
 buttonRect = textRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
 
 # Creiamo il testo e il rettangolo per il pulsante "Istruzioni" nel menu
-textRect2 = font.render('Istruzioni', True, "white")
+textRect2 = font.render('Istruzioni', True, colorIstruzioni)
 buttonIstruzioni = textRect2.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 60))
 
 # Variabile per il controllo del menu
@@ -93,6 +108,27 @@ while menu:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+            
+        if event.type == pygame.KEYDOWN :
+            if event.key == pygame.K_DOWN :
+        
+                if bottone_selezionato == 1 :
+                    bottone_selezionato = 2
+                else :
+                    bottone_selezionato = 1
+        
+            if event.key == pygame.K_UP: 
+                if bottone_selezionato == 1 :
+                    bottone_selezionato = 2
+                else :
+                    bottone_selezionato = 1
+    
+    if bottone_selezionato == 1 :
+        colorGioca = "red"
+        colorIstruzioni = "blue"
+    else :
+        colorGioca = "blue"
+        colorIstruzioni = "red"
 
     # Riempimento dello schermo con il colore nero
     screen.fill("black")
@@ -112,11 +148,11 @@ while menu:
     pygame.display.update()
 
     # Otteniamo la posizione del mouse
-    mPos = pygame.mouse.get_pos()
-
+    
+        
     # Se viene premuto il pulsante del mouse, controlliamo se è stato premuto il pulsante "Gioca"
-    if event.type == pygame.MOUSEBUTTONDOWN:
-        if buttonRect.collidepoint(mPos):
+    if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN :
+        if bottone_selezionato == 1 : 
             # Avviamo il ciclo di gioco principale
             menu = False
             while running:
@@ -153,7 +189,8 @@ while menu:
                         shots.append(pygame.Rect(x + w // 2 - 2, y, 7, 14))
                         # Aggiungiamo la musica per i colpi sparati
                         pygame.mixer.init()
-                        pygame.mixer.music.load("suonocolpo.mp3")
+                        path_suono_colpo = path_cartella_gioco / "suonocolpo.mp3"
+                        pygame.mixer.music.load(path_suono_colpo)
                         pygame.mixer.music.set_volume(0.5)
                         pygame.mixer.music.play()
 
@@ -284,7 +321,7 @@ while menu:
             quit()
 
         # Se viene premuto il pulsante "Istruzioni" nel menu, visualizziamo le istruzioni
-        if buttonIstruzioni.collidepoint(mPos):
+        if bottone_selezionato == 2:
             menu = False
             istruzioni = True
 
@@ -299,7 +336,7 @@ while menu:
                         menu = True
 
                 screen.fill("black")
-
+                
                 scrittaRect = font.render("ISTRUZIONI", True, "white")
                 titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
 
