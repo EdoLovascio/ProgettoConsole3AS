@@ -27,6 +27,9 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestr
 
 font = pygame.font.SysFont('Arial', 30)
 
+#creo la lista con i nomi dei giochi
+ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "Pac-Man" , "Snake" , "Space Something" , "Space wars" , "Sparabolle"]
+
 # Crea una lista di 9 rettangoli per i pulsanti
 ListaButton = []
 # misure pulsanti
@@ -72,7 +75,7 @@ while running:
     # do un nome ai pulsanti dei vari giochi
     NameButton = [] # lista per i nomi dei bottoni
     for x, buttonRect in enumerate(ListaButton):
-        textRect = font.render(f'Pulsante {x + 1}', True, "white")
+        textRect = font.render(ListaNomiGiochi[x], True, "white")#abbino gni bottone al nome del corrispettivo gioco
         NameButton.append(x) # aggiungo il nome del pulsante alla lista
         screen.blit(textRect, (buttonRect.x + 10, buttonRect.y + 10))
         
