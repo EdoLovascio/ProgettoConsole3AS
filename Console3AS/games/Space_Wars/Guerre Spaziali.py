@@ -102,6 +102,8 @@ menu = True
 
 # Ciclo while per il menu
 while menu:
+    textRect = font.render('Gioca', True, colorGioca)
+    textRect2 = font.render('Istruzioni', True, colorIstruzioni)
     # Gestiamo gli eventi del gioco
     for event in pygame.event.get():
         # Se viene premuto il pulsante di chiusura della finestra, terminiamo il gioco
