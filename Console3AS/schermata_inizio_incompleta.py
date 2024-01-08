@@ -23,7 +23,7 @@ Sparabolle = CG / "Sparabolle"
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
-Bottone = 0
+button = 0
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestra
 
@@ -71,8 +71,8 @@ ListaDescrizioniGiochi = [
 running = True
 
 while running:
-    
-    mPos = pygame.mouse.get_pos()
+    pygame.time.delay(65)
+
 
     # se devo uscire dal gioco...
     for event in pygame.event.get():
@@ -85,9 +85,8 @@ while running:
     screen.fill("peachpuff") #coloro lo sfondo di bianco
     
     for idx, buttonRect in enumerate(ListaButton):
-        
         buttonColor = "navy" #colore normale: rosso
-        if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
+        if  idx == button: # se passo sopra il pulsante cambia colore
             buttonColor = "maroon" #colore se sono sopra con il mouse: verde
             descrizioneRect = pygame.Rect(10, SCREEN_HEIGHT - 100, SCREEN_WIDTH - 20, 80)
             pygame.draw.rect(screen, "maroon", descrizioneRect)
@@ -102,10 +101,47 @@ while running:
         NameButton.append(x) # aggiungo il nome del pulsante alla lista
         screen.blit(textRect, (buttonRect.x + 10, buttonRect.y + 10))
         
-    if event.type == pygame.MOUSEBUTTONDOWN: # se clicco il tasto del mouse...
+        
+    if event.type == pygame.KEYDOWN :
+            if event.key == pygame.K_RIGHT :
+        
+                if button != 8 :
+                    button += 1
+                else :
+                    button = 0
+        
+            if event.key == pygame.K_LEFT: 
+                if button != 0 :
+                    button -= 1
+                else :
+                    button = 8
+            
+            if event.key == pygame.K_UP: 
+                if button >= 3 :
+                    button -= 3
+                else :
+                    if button == 0 :
+                        button = 6
+                    if button == 1 :
+                        button = 7
+                    if button == 2 :
+                        button = 8
+                        
+            if event.key == pygame.K_DOWN: 
+                if button <= 5 :
+                    button += 3
+                else :
+                    if button == 6 :
+                        button = 0
+                    if button == 7 :
+                        button = 1
+                    if button == 8 :
+                        button = 2
+                    
+    if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN : # se clicco il tasto del mouse...
     # Loop attraverso tutti i pulsanti
-        for buttonRect in ListaButton:
-            if buttonRect.collidepoint(mPos):
+        for idx, buttonRect in enumerate(ListaButton) :
+            if idx == button :
                 # per ogni pulsante che clicco mi apre un gioco diverso
                 if ListaButton.index(buttonRect) == NameButton[0]:
                    for x in Reaper.glob("*py"):
