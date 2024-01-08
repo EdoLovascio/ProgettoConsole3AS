@@ -55,7 +55,7 @@ for x in range(3):
 
 # Aggiungi descrizioni per ciascun gioco
 ListaDescrizioniGiochi = [
-    "Fuggi dalla Morte e recupera lo xanax.",
+    "Fuggi dalla Morte e recupera lo xanax ",
     "Aiuta Gabibbo a superare gli ostacoli e raggiungere la vittoria.",
     "Esplora il mondo di Ficosecco e aiutalo ad essere promosso.",
     "Salta, schiva i draghi, salva la principessa",
@@ -64,7 +64,6 @@ ListaDescrizioniGiochi = [
     "Divertiti a sparare al tuo amico (si scherza)",
     "Elimina gli alieni e fatti strada",
     "Un classico...",
-    # Aggiungi descrizioni per gli altri giochi...
 ]
 
 #---------------------------------#
