@@ -11,7 +11,7 @@ Reaper = CG / "Escape_The_Reaper"
 Gabibbo = CG / "Gabibbo"
 Fico = CG / "Ficosecco"
 Jumper = CG / "Jumper"
-PacMan = CG / "Pac-Man"
+PacMan = CG / "PacMan"
 Snake = CG / "Snake"
 SpaceSomething = CG / "Space_Something"
 SpaceWars = CG / "Space_Wars"
@@ -28,7 +28,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestr
 font = pygame.font.SysFont('Arial', 30)
 
 #creo la lista con i nomi dei giochi
-ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "Pac-Man" , "Snake" , "Space Something" , "Space wars" , "Sparabolle"]
+ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "PacMan" , "Snake" , "Space Something" , "Space wars" , "Sparabolle"]
 
 # Crea una lista di 9 rettangoli per i pulsanti
 ListaButton = []
