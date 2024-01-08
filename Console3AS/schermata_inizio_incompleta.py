@@ -23,6 +23,8 @@ Sparabolle = CG / "Sparabolle"
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 
+Bottone = 0
+
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestra
 
 font = pygame.font.SysFont('Arial', 30)
@@ -54,7 +56,7 @@ for x in range(3):
 running = True
 
 while running:
-
+    
     mPos = pygame.mouse.get_pos()
 
     # se devo uscire dal gioco...
@@ -68,6 +70,7 @@ while running:
     screen.fill("black") #coloro lo sfondo di bianco
     
     for buttonRect in ListaButton:
+        
         buttonColor = "purple" #colore normale: rosso
         if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
             buttonColor = "green" #colore se sono sopra con il mouse: verde
