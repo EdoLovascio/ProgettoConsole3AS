@@ -51,6 +51,22 @@ for x in range(3):
         )
         ListaButton.append(buttonRect)
 
+#----------------------------------#
+
+# Aggiungi descrizioni per ciascun gioco
+ListaDescrizioniGiochi = [
+    "Fuggi dalla Morte e recupera lo xanax.",
+    "Aiuta Gabibbo a superare gli ostacoli e raggiungere la vittoria.",
+    "Esplora il mondo di Ficosecco e aiutalo ad essere promosso.",
+    "Salta, schiva i draghi, salva la principessa",
+    "Un classico...",
+    "Un classico...",
+    "Divertiti a sparare al tuo amico (si scherza)",
+    "Elimina gli alieni e fatti strada",
+    "Un classico...",
+    # Aggiungi descrizioni per gli altri giochi...
+]
+
 #---------------------------------#
 
 running = True
@@ -67,18 +83,23 @@ while running:
             running = False
 
 
-    screen.fill("black") #coloro lo sfondo di bianco
+    screen.fill("peachpuff") #coloro lo sfondo di bianco
     
-    for buttonRect in ListaButton:
+    for idx, buttonRect in enumerate(ListaButton):
         
-        buttonColor = "purple" #colore normale: rosso
+        buttonColor = "navy" #colore normale: rosso
         if buttonRect.collidepoint(mPos): # se passo sopra il pulsante cambia colore
-            buttonColor = "green" #colore se sono sopra con il mouse: verde
+            buttonColor = "maroon" #colore se sono sopra con il mouse: verde
+            descrizioneRect = pygame.Rect(10, SCREEN_HEIGHT - 100, SCREEN_WIDTH - 20, 80)
+            pygame.draw.rect(screen, "maroon", descrizioneRect)
+            descrizioneText = font.render(ListaDescrizioniGiochi[idx], True, "peachpuff")
+            screen.blit(descrizioneText, (descrizioneRect.x + 10, descrizioneRect.y + 10))
+            
         pygame.draw.rect(screen, buttonColor, buttonRect) #disegno il bottone
     # do un nome ai pulsanti dei vari giochi
     NameButton = [] # lista per i nomi dei bottoni
     for x, buttonRect in enumerate(ListaButton):
-        textRect = font.render(ListaNomiGiochi[x], True, "white")#abbino gni bottone al nome del corrispettivo gioco
+        textRect = font.render(ListaNomiGiochi[x], True, "peachpuff")#abbino gni bottone al nome del corrispettivo gioco
         NameButton.append(x) # aggiungo il nome del pulsante alla lista
         screen.blit(textRect, (buttonRect.x + 10, buttonRect.y + 10))
         
