@@ -19,6 +19,9 @@ pygame.init()
 screen_x = 1000
 screen_y = 750
 
+SCREEN_WIDTH = screen_x
+SCREEN_HEIGHT = screen_y
+
 x = screen_x // 2
 y = screen_y
 
@@ -128,6 +131,45 @@ clock = pygame.time.Clock()
 
 
 running = True
+
+# Carichiamo il font per il testo del menu
+font = pygame.font.SysFont('Arial', 30)
+fontTitolo = pygame.font.SysFont('Arial', 60)
+
+schermata = "istruzioni"
+
+while schermata == "istruzioni":
+     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+        # Se viene premuto il tasto Esc, ritorna al menù principale    
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            schermata = "menu"
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            pygame.quit()
+            
+        screen.fill("black")
+        
+        scrittaRect = font.render("ISTRUZIONI", True, "white")
+        titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
+
+        testoIstruzioni1 = font.render("Muovi il cavagliere usando il joystick",True,"white")
+        testoIstruzioni2 = font.render("Evita i draghi mentre salti sulle nuvole",True, "white")
+        testoIstruzioni3 = font.render("Salva la principessa dal ciello ",True, "white")
+        testoIstruzioni4 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
+        testoIstruzioni6 = font.render("Premi Invio per inziare a giocare",True, "white")
+        testoIstruzioni5 = font.render("Buona fortuna!",True, "white")
+
+        screen.blit(scrittaRect, titoloRect)
+        screen.blit(testoIstruzioni1,(SCREEN_WIDTH // 2 - testoIstruzioni1.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni1.get_height() // 2))
+        screen.blit(testoIstruzioni2,(SCREEN_WIDTH // 2 - testoIstruzioni2.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni2.get_height() // 2 + 45))
+        screen.blit(testoIstruzioni3,(SCREEN_WIDTH // 2 - testoIstruzioni3.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni3.get_height() // 2 + 90))
+        screen.blit(testoIstruzioni4,(SCREEN_WIDTH // 2 - testoIstruzioni4.get_width() // 2, SCREEN_HEIGHT // 2 + testoIstruzioni4.get_height() // 2 + 45))
+        screen.blit(testoIstruzioni6,(SCREEN_WIDTH // 2 - testoIstruzioni6.get_width() // 2, SCREEN_HEIGHT // 2 + testoIstruzioni6.get_height() // 2 + 90))
+        screen.blit(testoIstruzioni5,(SCREEN_WIDTH // 2 - testoIstruzioni5.get_width() // 2, SCREEN_HEIGHT - testoIstruzioni5.get_height() - 50))
+        pygame.display.update()
+
 
 while running:  
 

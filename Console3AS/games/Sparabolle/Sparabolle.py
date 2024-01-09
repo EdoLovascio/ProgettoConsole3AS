@@ -8,7 +8,8 @@ pygame.init()
 # Dimensioni finestra di gioco
 WIDTH = 800
 HEIGHT = 600
-
+SCREEN_WIDTH = WIDTH
+SCREEN_HEIGHT = HEIGHT
 # Creazione finestra di gioco
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Bubble Shooter")
@@ -95,7 +96,45 @@ def check_collision(bubbles, shoot, punteggio):
             return True
     return False
 
+# Carichiamo il font per il testo del menu
+font = pygame.font.SysFont('Arial', 30)
+fontTitolo = pygame.font.SysFont('Arial', 60)
 
+schermata = "istruzioni"
+
+while schermata == "istruzioni":
+     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            quit()
+        # Se viene premuto il tasto Esc, ritorna al menù principale    
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
+            schermata = "menu"
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            pygame.quit()
+            
+        screen.fill("black")
+        
+        scrittaRect = font.render("ISTRUZIONI", True, "white")
+        titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
+
+        testoIstruzioni1 = font.render("Muovi il bolla usando il joystick(DESTRA / SINISTRA)",True,"white")
+        testoIstruzioni2 = font.render("con INVIO lancia la Bolla",True, "white")
+        testoIstruzioni3 = font.render("in altre di colore uguale per scopiarle",True, "white")
+        testoIstruzioni4 = font.render("più bolle scopi più sara il tuo punteggio",True, "white")
+        testoIstruzioni6 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
+        testoIstruzioni5 = font.render("Premi Invio per inziare a giocare",True, "white")
+        testoIstruzioni7 = font.render("Buona fortuna!",True, "white")
+
+        screen.blit(scrittaRect, titoloRect)
+        screen.blit(testoIstruzioni1,(SCREEN_WIDTH // 2 - testoIstruzioni1.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni1.get_height() // 2 - 45))
+        screen.blit(testoIstruzioni2,(SCREEN_WIDTH // 2 - testoIstruzioni2.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni2.get_height() // 2 ))
+        screen.blit(testoIstruzioni3,(SCREEN_WIDTH // 2 - testoIstruzioni3.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni3.get_height() // 2 + 45))
+        screen.blit(testoIstruzioni4,(SCREEN_WIDTH // 2 - testoIstruzioni4.get_width() // 2, SCREEN_HEIGHT // 3 - testoIstruzioni4.get_height() // 2 + 90))
+        screen.blit(testoIstruzioni6,(SCREEN_WIDTH // 2 - testoIstruzioni6.get_width() // 2, SCREEN_HEIGHT // 2 + testoIstruzioni6.get_height() // 2 + 45))
+        screen.blit(testoIstruzioni5,(SCREEN_WIDTH // 2 - testoIstruzioni6.get_width() // 2, SCREEN_HEIGHT // 2 + testoIstruzioni6.get_height() // 2 + 90))
+        screen.blit(testoIstruzioni7,(SCREEN_WIDTH // 2 - testoIstruzioni7.get_width() // 2, SCREEN_HEIGHT - testoIstruzioni7.get_height() - 50))
+        pygame.display.update()
 
 
 # Funzione principale del gioco
@@ -129,7 +168,8 @@ def game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                running = False
                 
                
                     
