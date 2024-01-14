@@ -204,7 +204,12 @@ def game():
 
 
         # Sfondo
-        sfondoPath = Path.cwd() / "games" / "Sparabolle" / "cielo.png"
+        if "Sparabolle" in str(Path.cwd()) :
+            path_cartella_gioco = Path.cwd()
+        else :
+            path_currente = Path.cwd()
+            path_cartella_gioco = path_currente / "games" / "Sparabolle"
+        sfondoPath =  path_cartella_gioco / "cielo.png"
         sfondo = pygame.image.load(sfondoPath)
         sfondo = pygame.transform.scale(sfondo,(WIDTH, HEIGHT))
         screen.blit(sfondo,(0,0))

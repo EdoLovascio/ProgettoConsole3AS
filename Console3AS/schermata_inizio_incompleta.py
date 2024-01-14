@@ -29,6 +29,7 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestr
 pygame.display.set_caption("Console giochi 3AS")
 
 font = pygame.font.SysFont('Arial', 30)
+font1 = pygame.font.SysFont('Arial', 40)
 
 #creo la lista con i nomi dei giochi
 ListaNomiGiochi = ["Escape the Reaper" , "Gabibbo" , "Fico" , "Jumper" , "PacMan" , "Snake" , "Space Something" , "Space wars" , "Sparabolle"]
@@ -67,14 +68,14 @@ ListaDescrizioniGiochi = [
     "Un classico...",
 ]
 
+
 #---------------------------------#
 
 running = True
 
 while running:
     pygame.time.delay(65)
-
-
+    
     # se devo uscire dal gioco...
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -84,6 +85,9 @@ while running:
 
 
     screen.fill("peachpuff") #coloro lo sfondo di bianco
+    
+    Titolo = font1.render("LIBRERIA DEI GIOCHI",True,"black")
+    screen.blit(Titolo, (SCREEN_WIDTH // 2 - Titolo.get_width() // 2, 10))
     
     for idx, buttonRect in enumerate(ListaButton):
         buttonColor = "navy" #colore normale: rosso

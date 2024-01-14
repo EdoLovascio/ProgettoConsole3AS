@@ -8,8 +8,12 @@ import random
 import time
 from pathlib import Path
 
-path_currente = Path.cwd()
-path_cartella_gioco = path_currente / "games" / "Jumper"
+if "Jumper" in str(Path.cwd()) :
+    path_cartella_gioco = Path.cwd()
+else :
+    path_currente = Path.cwd()
+    path_cartella_gioco = path_currente / "games" / "Jumper"
+
 
 pygame.init()
 
@@ -154,7 +158,7 @@ while schermata == "istruzioni":
         scrittaRect = font.render("ISTRUZIONI", True, "white")
         titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
 
-        testoIstruzioni1 = font.render("Muovi il cavaliere usando il joystick",True,"white")
+        testoIstruzioni1 = font.render("Muovi il cavagliere usando il joystick",True,"white")
         testoIstruzioni2 = font.render("Evita i draghi mentre salti sulle nuvole",True, "white")
         testoIstruzioni3 = font.render("Supera tutti i livelli per salvare la principessa",True, "white")
         testoIstruzioni4 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
