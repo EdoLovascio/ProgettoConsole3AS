@@ -67,9 +67,9 @@ while schermata == "istruzioni":
         scrittaRect = font.render("ISTRUZIONI", True, "white")
         titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
 
-        testoIstruzioni1 = font.render("Muovi il serpento usando il joystick",True,"white")
-        testoIstruzioni2 = font.render("Evita di scontrare i muri per non muorire",True, "white")
-        testoIstruzioni3 = font.render("mangia più mele possibili per crescere il serpente",True, "white")
+        testoIstruzioni1 = font.render("Muovi il serpente usando il joystick",True,"white")
+        testoIstruzioni2 = font.render("Mangia più mele possibili e fai crescere il serpente",True, "white")
+        testoIstruzioni3 = font.render("Evita i muri e non morderti la coda",True, "white")
         testoIstruzioni4 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
         testoIstruzioni6 = font.render("Premi Invio per inziare a giocare",True, "white")
         testoIstruzioni5 = font.render("Buona fortuna!",True, "white")
@@ -89,7 +89,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-        running = False
+            running = False
 
         # Controllo dei tasti 
         if event.type == pygame.KEYDOWN:

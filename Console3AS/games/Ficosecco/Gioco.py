@@ -106,7 +106,7 @@ while schermata == "istruzioni":
 
         testoIstruzioni1 = font.render("Muovi Fico usando il joystick",True,"white")
         testoIstruzioni2 = font.render("Evita le insufficenze",True, "white")
-        testoIstruzioni3 = font.render("Raccogli più sufficenze che ti è possibile ",True, "white")
+        testoIstruzioni3 = font.render("Raccogli più sufficenze possibili",True, "white")
         testoIstruzioni4 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
         testoIstruzioni6 = font.render("Premi Invio per inziare a giocare",True, "white")
         testoIstruzioni5 = font.render("Buona fortuna!",True, "white")

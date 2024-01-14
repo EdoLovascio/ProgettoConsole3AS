@@ -92,9 +92,9 @@ while schermata == "istruzioni":
         scrittaRect = font.render("ISTRUZIONI", True, "white")
         titoloRect = scrittaRect.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 8))
 
-        testoIstruzioni1 = font.render("Muovi il gabbibo con il joystick(solo UP)",True,"white")
+        testoIstruzioni1 = font.render("Muovi in alto il gabibbo con il joystick",True,"white")
         testoIstruzioni2 = font.render("Evita i MURI ",True, "white")
-        testoIstruzioni3 = font.render("prova a sopravivere il più possibile",True, "white")
+        testoIstruzioni3 = font.render("Sopravvivi il più possibile",True, "white")
         testoIstruzioni4 = font.render("Premi ESC per uscire dalle istruzioni",True, "white")
         testoIstruzioni6 = font.render("Premi Invio per inziare a giocare",True, "white")
         testoIstruzioni5 = font.render("Buona fortuna!",True, "white")

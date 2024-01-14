@@ -26,6 +26,7 @@ SCREEN_HEIGHT = 600
 button = 0
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) #creo la finestra
+pygame.display.set_caption("Console giochi 3AS")
 
 font = pygame.font.SysFont('Arial', 30)
 
