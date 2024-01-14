@@ -27,9 +27,12 @@ from pygame.locals import (
     K_KP_ENTER,
     K_RETURN
 )
+if "Space_Something" in str(Path.cwd()) :
+    path_cartella_gioco = Path.cwd()
+else :
+    path_currente = Path.cwd()
+    path_cartella_gioco = path_currente / "games" / "Space_Something"
 
-path_currente = Path.cwd()
-path_cartella_gioco = path_currente / "games" / "Space_Something"
 pygame.init()
 
 # MUSICA SOTTOFONDO
@@ -150,6 +153,8 @@ font = pygame.font.Font(path_font_retro ,40)
 font1 = pygame.font.Font(path_font_early ,60)
 font2 = pygame.font.Font(path_font_early ,80)
 font3 = pygame.font.Font(path_font_retro ,40)
+font4 = pygame.font.Font(path_font_retro, 15)
+
 
 
 TITOLO1 = font2.render('SPACE' , True , "white")
@@ -194,12 +199,16 @@ BOTTONE_QUIT = pygame.Rect( 200, SCREEN_HEIGHT //2 + 50  , 150, 50)
 path_wasd = path_cartella_gioco /"WASD.png"
 path_arrow = path_cartella_gioco /"ARROW.png"
 path_invio = path_cartella_gioco /"INVIO.png"
+path_joystick = path_cartella_gioco /"joystick.png"
 
 img_wasd = pygame.image.load(path_wasd)
 img_wasd  = pygame.transform.scale(img_wasd, (205, 205 ))
 
 img_arrow = pygame.image.load(path_arrow)
 img_arrow   = pygame.transform.scale(img_arrow , (205, 205 ))
+
+img_joystick = pygame.image.load(path_joystick)
+img_joystick  = pygame.transform.scale(img_joystick, (205, 205 ))
 
 img_invio =  pygame.image.load(path_invio)
 img_invio  = pygame.transform.scale(img_invio, (205, 205 ))
@@ -211,6 +220,11 @@ img_navicella3 = pygame.transform.rotate(img_navicella3, 90 )
 img_navicella4 = pygame.image.load(path_navicella2)
 img_navicella4 = pygame.transform.scale(img_navicella4, (120, 113 ) )
 img_navicella4 = pygame.transform.rotate(img_navicella4, 270 )
+
+testoIstruzioni = font4.render("vinci sparando al aversario",True,"white")
+testoIstruzioni1 = font4.render("riducendo la loro vita = 0",True,"white")
+testoIstruzioni2 = font4.render("quando arrivi a mezza vita  ",True,"white")
+testoIstruzioni3 = font4.render("apparirano delle cure (+1) ",True,"white")
 
 bottone_menu_selezionato = 1
 
@@ -252,12 +266,12 @@ winner = WINNER1
 running = True
 paused = False
 
-# STARTING THE GAME CYCLE
-while running:
 
-    pygame.time.delay(50)
-    
-    
+# STARTING THE GAME CYCLE
+while running :
+
+    pygame.time.delay(60)
+       
     for event in pygame.event.get():
         # QUIT
         if event.type == pygame.QUIT: 
@@ -394,7 +408,7 @@ while running:
     if paused:
         continue
     
-    #MENU INIZIALE 
+    #MENU INIZIALE
     if stato == "STARTING" :
         while stato == "STARTING" :
             if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
@@ -402,7 +416,7 @@ while running:
                 break
                     
             screen.blit(img_STARTING ,(0, 0))
-            
+
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN:
@@ -421,49 +435,73 @@ while running:
                             bottone_menu_selezionato = 2
                             
                     if event.key == pygame.K_RETURN :
+                        
                         if bottone_menu_selezionato == 1 :
                             stato = "GAMING"
+                            
                             
                         if bottone_menu_selezionato == 2 :
                             running = False
                             break
                         
-            
+
             bottone_quit_color = "red"
-            
+
             if bottone_menu_selezionato == 2 :
                 bottone_quit_color = "blue"
-            
+
             bottone_quit = pygame.draw.rect(screen, bottone_quit_color, BOTTONE_QUIT )
             screen.blit(QUIT, (210, SCREEN_HEIGHT //2 + 50)  )
-            
+
             bottone_start_color = "red"
-            
+
             if bottone_menu_selezionato == 1 :
                 bottone_start_color = "blue"
-            
+
             bottone_start = pygame.draw.rect(screen,bottone_start_color,BOTTONE_START )
             screen.blit(START,(210, SCREEN_HEIGHT //2 - 50 ))
-            
+
             #-----------------------------------------------
             screen.blit(TITOLO1, ( 50 , 25 ))
             screen.blit(TITOLO2, ( 50, 125 ))
-            
+
             #-----------------------------------------
             #superficie
             s1 = pygame.Surface((480, 650 ), pygame.SRCALPHA)   
             s1.fill((20 ,20,20 , 120 ))                       
             screen.blit(s1, ((SCREEN_WIDTH // 2 + 150  ) , 100 ))
             screen.blit(img_wasd, ((SCREEN_WIDTH // 2 + 230 ) , 200  ))
-            screen.blit(img_arrow, ((SCREEN_WIDTH // 2 + 170 ) , SCREEN_HEIGHT // 2 + 125 ))
+            screen.blit(img_joystick, ((SCREEN_WIDTH // 2 + 170 ) , SCREEN_HEIGHT // 2 + 100 ))
             screen.blit(img_invio , ((SCREEN_WIDTH // 2 + 300 ) , SCREEN_HEIGHT // 2 + 100 ))
             screen.blit(PLAYER2 , ((SCREEN_WIDTH // 2 + 230 ) , SCREEN_HEIGHT // 2 + 50 ))
             screen.blit(PLAYER1 , ((SCREEN_WIDTH  // 2 + 230 ) , 150 ))
             screen.blit(img_navicella3 , ((SCREEN_WIDTH //2 + 450 ) , 225   ))
             screen.blit(img_navicella4 , ((SCREEN_WIDTH //2 + 450 ) , SCREEN_HEIGHT // 2 + 125   ))
-            
+
+            x = SCREEN_WIDTH // 2 - 400 + 100
+            y = SCREEN_HEIGHT // 2 - 50
+            s2 = pygame.Surface(( 400, 400 ), pygame.SRCALPHA)   
+            s2.fill((20 ,20,20 , 120 ))                    
+            screen.blit(s2, ( x , y  ))
+            screen.blit(testoIstruzioni, ((x +10  ) , y + 10 ))
+            screen.blit(testoIstruzioni1,((x +10 ) , y + 50 ))
+
+            lifeb1 = pygame.draw.rect(screen , "white" , (x + 5 , y + 75 , 310 , 30))
+            lifeg = pygame.draw.rect(screen , "green" , (x + 10 , y + 80 , 300 , 20))
+            lifeb2 = pygame.draw.rect(screen , "white" , (x + 5 , y + 115 , 310 , 30))
+            lifey = pygame.draw.rect(screen , "yellow" , (x + 10 , y + 120 , 150 , 20))
+            lifeb3 = pygame.draw.rect(screen , "white" , (x + 5 , y + 155 , 310 , 30))
+            lifer = pygame.draw.rect(screen , "red" , (x + 10 , y + 160 , 30 , 20))
+
+            screen.blit(testoIstruzioni2,((x +10 ) , y + 200 ))
+            screen.blit(testoIstruzioni3,((x +10 ) , y + 240 ))
+
+            img_ricarica3 = pygame.transform.scale(img_ricarica1, (80, 80))
+
+            screen.blit( img_ricarica3,( x + 200  - 40 , y + 260) )
+
             pygame.display.flip()
-            
+        
     #MORTE
             
     if stato == "GAMEOVER1" or stato == "GAMEOVER2":
