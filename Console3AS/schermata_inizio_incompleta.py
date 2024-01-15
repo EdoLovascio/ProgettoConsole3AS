@@ -74,7 +74,7 @@ ListaDescrizioniGiochi = [
 running = True
 
 while running:
-    pygame.time.delay(65)
+    pygame.time.delay(70)
     
     # se devo uscire dal gioco...
     for event in pygame.event.get():

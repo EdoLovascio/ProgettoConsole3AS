@@ -263,10 +263,108 @@ img_interno.set_alpha(10)
 
 winner = WINNER1
 
-running = True
+stato == "STARTING"
+
+running = False
 paused = False
 
+while stato == "STARTING" :
+    
+    pygame.time.delay(60)
+    
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
+            running = False
+            break
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+               stato = "GAMING"
+               running = True
+        
+            if event.key == pygame.K_DOWN :
+                if bottone_menu_selezionato == 1 :
+                    bottone_menu_selezionato = 2
+                else :
+                    bottone_menu_selezionato = 1
+            
+            if event.key == pygame.K_UP: 
+                if bottone_menu_selezionato == 2 :
+                    bottone_menu_selezionato = 1
+                else :
+                    bottone_menu_selezionato = 2
+                    
+            if event.key == pygame.K_RETURN :
+                
+                if bottone_menu_selezionato == 1 :
+                    stato = "GAMING"
+                    running = True
+                    
+                if bottone_menu_selezionato == 2 :
+                    running = False
+                    break
+                
+                
+    screen.blit(img_STARTING ,(0, 0))
 
+    bottone_quit_color = "red"
+
+    if bottone_menu_selezionato == 2 :
+        bottone_quit_color = "blue"
+
+    bottone_quit = pygame.draw.rect(screen, bottone_quit_color, BOTTONE_QUIT )
+    screen.blit(QUIT, (210, SCREEN_HEIGHT //2 + 50)  )
+
+    bottone_start_color = "red"
+
+    if bottone_menu_selezionato == 1 :
+        bottone_start_color = "blue"
+
+    bottone_start = pygame.draw.rect(screen,bottone_start_color,BOTTONE_START )
+    
+    screen.blit(START,(210, SCREEN_HEIGHT //2 - 50 ))
+
+    #-----------------------------------------------
+    screen.blit(TITOLO1, ( 50 , 25 ))
+    screen.blit(TITOLO2, ( 50, 125 ))
+
+    #-----------------------------------------
+    #superficie
+    
+    s1 = pygame.Surface((480, 650 ), pygame.SRCALPHA)   
+    s1.fill((20 ,20,20 , 120 ))                       
+    screen.blit(s1, ((SCREEN_WIDTH // 2 + 150  ) , 100 ))
+    screen.blit(img_wasd, ((SCREEN_WIDTH // 2 + 230 ) , 200  ))
+    screen.blit(img_joystick, ((SCREEN_WIDTH // 2 + 170 ) , SCREEN_HEIGHT // 2 + 100 ))
+    screen.blit(img_invio , ((SCREEN_WIDTH // 2 + 300 ) , SCREEN_HEIGHT // 2 + 100 ))
+    screen.blit(PLAYER2 , ((SCREEN_WIDTH // 2 + 230 ) , SCREEN_HEIGHT // 2 + 50 ))
+    screen.blit(PLAYER1 , ((SCREEN_WIDTH  // 2 + 230 ) , 150 ))
+    screen.blit(img_navicella3 , ((SCREEN_WIDTH //2 + 450 ) , 225   ))
+    screen.blit(img_navicella4 , ((SCREEN_WIDTH //2 + 450 ) , SCREEN_HEIGHT // 2 + 125   ))
+
+    x = SCREEN_WIDTH // 2 - 400 + 100
+    y = SCREEN_HEIGHT // 2 - 50
+    s2 = pygame.Surface(( 400, 400 ), pygame.SRCALPHA)   
+    s2.fill((20 ,20,20 , 120 ))                    
+    screen.blit(s2, ( x , y  ))
+    screen.blit(testoIstruzioni, ((x +10  ) , y + 10 ))
+    screen.blit(testoIstruzioni1,((x +10 ) , y + 50 ))
+
+    lifeb1 = pygame.draw.rect(screen , "white" , (x + 5 , y + 75 , 310 , 30))
+    lifeg = pygame.draw.rect(screen , "green" , (x + 10 , y + 80 , 300 , 20))
+    lifeb2 = pygame.draw.rect(screen , "white" , (x + 5 , y + 115 , 310 , 30))
+    lifey = pygame.draw.rect(screen , "yellow" , (x + 10 , y + 120 , 150 , 20))
+    lifeb3 = pygame.draw.rect(screen , "white" , (x + 5 , y + 155 , 310 , 30))
+    lifer = pygame.draw.rect(screen , "red" , (x + 10 , y + 160 , 30 , 20))
+
+    screen.blit(testoIstruzioni2,((x +10 ) , y + 200 ))
+    screen.blit(testoIstruzioni3,((x +10 ) , y + 240 ))
+
+    img_ricarica3 = pygame.transform.scale(img_ricarica1, (80, 80))
+
+    screen.blit( img_ricarica3,( x + 200  - 40 , y + 260) )
+
+    pygame.display.update()
+            
 # STARTING THE GAME CYCLE
 while running :
 
@@ -409,98 +507,7 @@ while running :
         continue
     
     #MENU INIZIALE
-    if stato == "STARTING" :
-        while stato == "STARTING" :
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE or event.type == pygame.QUIT:
-                running = False
-                break
-                    
-            screen.blit(img_STARTING ,(0, 0))
-
-            for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RETURN:
-                       stato = "GAMING"
-                
-                    if event.key == pygame.K_DOWN :
-                        if bottone_menu_selezionato == 1 :
-                            bottone_menu_selezionato = 2
-                        else :
-                            bottone_menu_selezionato = 1
-                    
-                    if event.key == pygame.K_UP: 
-                        if bottone_menu_selezionato == 2 :
-                            bottone_menu_selezionato = 1
-                        else :
-                            bottone_menu_selezionato = 2
-                            
-                    if event.key == pygame.K_RETURN :
-                        
-                        if bottone_menu_selezionato == 1 :
-                            stato = "GAMING"
-                            
-                            
-                        if bottone_menu_selezionato == 2 :
-                            running = False
-                            break
-                        
-
-            bottone_quit_color = "red"
-
-            if bottone_menu_selezionato == 2 :
-                bottone_quit_color = "blue"
-
-            bottone_quit = pygame.draw.rect(screen, bottone_quit_color, BOTTONE_QUIT )
-            screen.blit(QUIT, (210, SCREEN_HEIGHT //2 + 50)  )
-
-            bottone_start_color = "red"
-
-            if bottone_menu_selezionato == 1 :
-                bottone_start_color = "blue"
-
-            bottone_start = pygame.draw.rect(screen,bottone_start_color,BOTTONE_START )
-            screen.blit(START,(210, SCREEN_HEIGHT //2 - 50 ))
-
-            #-----------------------------------------------
-            screen.blit(TITOLO1, ( 50 , 25 ))
-            screen.blit(TITOLO2, ( 50, 125 ))
-
-            #-----------------------------------------
-            #superficie
-            s1 = pygame.Surface((480, 650 ), pygame.SRCALPHA)   
-            s1.fill((20 ,20,20 , 120 ))                       
-            screen.blit(s1, ((SCREEN_WIDTH // 2 + 150  ) , 100 ))
-            screen.blit(img_wasd, ((SCREEN_WIDTH // 2 + 230 ) , 200  ))
-            screen.blit(img_joystick, ((SCREEN_WIDTH // 2 + 170 ) , SCREEN_HEIGHT // 2 + 100 ))
-            screen.blit(img_invio , ((SCREEN_WIDTH // 2 + 300 ) , SCREEN_HEIGHT // 2 + 100 ))
-            screen.blit(PLAYER2 , ((SCREEN_WIDTH // 2 + 230 ) , SCREEN_HEIGHT // 2 + 50 ))
-            screen.blit(PLAYER1 , ((SCREEN_WIDTH  // 2 + 230 ) , 150 ))
-            screen.blit(img_navicella3 , ((SCREEN_WIDTH //2 + 450 ) , 225   ))
-            screen.blit(img_navicella4 , ((SCREEN_WIDTH //2 + 450 ) , SCREEN_HEIGHT // 2 + 125   ))
-
-            x = SCREEN_WIDTH // 2 - 400 + 100
-            y = SCREEN_HEIGHT // 2 - 50
-            s2 = pygame.Surface(( 400, 400 ), pygame.SRCALPHA)   
-            s2.fill((20 ,20,20 , 120 ))                    
-            screen.blit(s2, ( x , y  ))
-            screen.blit(testoIstruzioni, ((x +10  ) , y + 10 ))
-            screen.blit(testoIstruzioni1,((x +10 ) , y + 50 ))
-
-            lifeb1 = pygame.draw.rect(screen , "white" , (x + 5 , y + 75 , 310 , 30))
-            lifeg = pygame.draw.rect(screen , "green" , (x + 10 , y + 80 , 300 , 20))
-            lifeb2 = pygame.draw.rect(screen , "white" , (x + 5 , y + 115 , 310 , 30))
-            lifey = pygame.draw.rect(screen , "yellow" , (x + 10 , y + 120 , 150 , 20))
-            lifeb3 = pygame.draw.rect(screen , "white" , (x + 5 , y + 155 , 310 , 30))
-            lifer = pygame.draw.rect(screen , "red" , (x + 10 , y + 160 , 30 , 20))
-
-            screen.blit(testoIstruzioni2,((x +10 ) , y + 200 ))
-            screen.blit(testoIstruzioni3,((x +10 ) , y + 240 ))
-
-            img_ricarica3 = pygame.transform.scale(img_ricarica1, (80, 80))
-
-            screen.blit( img_ricarica3,( x + 200  - 40 , y + 260) )
-
-            pygame.display.flip()
+    
         
     #MORTE
             
